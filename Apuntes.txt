@@ -1,0 +1,8 @@
+git remote add origin https://github.com/yue17s/academia-react.git
+git branch -M main
+git push -u origin main
+
+
+$ git add .
+$ git commit -m "Segunda prueba"
+$ git push origin academia-react
