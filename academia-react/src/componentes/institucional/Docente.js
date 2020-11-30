@@ -15,7 +15,7 @@ const Docente = ({ objDocente, setDocenteSeleccionado }) => {
                   <img src={objDocente.imagen_doce} alt="" />
                 </div>
                 <div className="carddoc__nombre">
-                  <h6>MATEMATICO</h6>
+                  <h6>{objDocente.nom_docemate}</h6>
                 </div>
                 <div className="carddoc__subnombre">
                   <div className="sub">
@@ -38,7 +38,7 @@ const Docente = ({ objDocente, setDocenteSeleccionado }) => {
                   <img src={objDocente.imagen_doce} alt="" />
                 </div>
                 <div class="carddocone__nombre">
-                  <h6>MATEMATICO</h6>
+                  <h6>{objDocente.nom_docemate}</h6>
                 </div>
                 <div class="carddocone__subnombre">
                   <div class="sub">

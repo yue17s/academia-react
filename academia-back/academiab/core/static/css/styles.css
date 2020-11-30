@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap");
+:root {
+  --color-pri-80: #282828;
+  --color-pri-70: #313131;
+  --color-sec: #c4956a;
+  --color-gris: #c4c4c4;
+  --color-claro: #f5f5f5;
+  --font-monserrat: "Montserrat", sans-serif;
+  --font-color: rgba(0, 0, 0, 0.7);
+  --font-p-oscuro: rgba(255, 255, 255, 0.5);
+  --ancho-cont: 1170px;
+  --ancho-profe: 190px;
+  --ancho-profe-one: 320px;
+  --alto-sesion: 40px;
+  --alto-nav: 55px;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--font-color);
+}
+body::-webkit-scrollbar {
+  width: 1.1rem;
+}
+body::-webkit-scrollbar-track {
+  background: var(--color-pri-70);
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--color-gris);
+  border-radius: 15px;
+}
+body::-webkit-scrollbar-thumb:active {
+  background: var(--color-sec);
+}
+.contenedor {
+  width: var(--ancho-cont);
+  margin: auto;
+}
+.oscuro {
+  background-color: var(--color-pri-80) !important;
+  transition: all 0.5s ease;
+}
+.claro {
+  background-color: var(--color-claro);
+}
+.linea-right {
+  border-right: 2px solid var(--color-gris);
+  height: 20px;
+  margin-top: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0px;
+  margin: 0px;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+h1 {
+  font-family: var(--font-monserrat);
+  font-size: 60px;
+}
+h2 {
+  font-family: var(--font-monserrat);
+  font-size: 50px;
+}
+h3 {
+  font-size: 40px;
+}
+h4 {
+  font-size: 30px;
+}
+h5 {
+  font-size: 20px;
+}
+h6 {
+  font-size: 16px;
+}
+p {
+  line-height: 1.4;
+}
+ul {
+  padding-left: 0;
+}
+ul > li {
+  list-style: none;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: var(--font-color);
+  line-height: 1.4;
+}
+.vineta {
+  width: 10px;
+  background-color: var(--color-pri-70);
+  margin-right: 15px;
+}
+.boton {
+  height: 70px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+button {
+  border: none;
+  outline: none;
+  background-color: var(--color-sec);
+  color: #ffffff;
+  border: 1px solid var(--color-sec);
+  height: 50px;
+  padding: 10px 40px;
+  text-transform: uppercase !important;
+  font-weight: 700;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--color-pri-80);
+  border: 1px solid var(--color-sec);
+  transition: all 0.5s ease;
+}
+.agregar,
+.ingresar {
+  height: 35px;
+  padding: 10px 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+.activo {
+  border-bottom: 4px solid var(--color-sec);
+}
+.activo2 {
+  background-color: var(--color-sec);
+}
+.presentacion {
+  padding-top: var(--alto-sesion);
+}
+.presen__imagen {
+  line-height: 0px;
+}
+.presen__imagen img {
+  width: 100%;
+}

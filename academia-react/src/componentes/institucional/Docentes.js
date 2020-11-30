@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Docente from "./Docente";
-import { URL_BACKEND } from "../../services/variables";
+import { URL_BACKEND_HERO } from "../../services/variables";
 
 const Docentes = ({ setDocenteSeleccionado }) => {
   const [docentes, setDocentes] = useState([]);
@@ -12,7 +12,9 @@ const Docentes = ({ setDocenteSeleccionado }) => {
   };*/
 
   const getDocentes = async () => {
-    let response = await fetch(`${URL_BACKEND}/docentes`);
+    let response = await fetch(`${URL_BACKEND_HERO}/List_All_Docentes`, [
+      "GET",
+    ]);
     let json = await response.json();
     return json;
   };

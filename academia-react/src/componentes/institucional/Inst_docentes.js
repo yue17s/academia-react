@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import Docentes from "./Docentes";
+import DocenteMaterias from "./DocenteMaterias";
 import DocenteDetalle from "./DocenteDetalle";
 import { getMaterias } from "../../services/services";
 
@@ -37,19 +38,7 @@ const Inst_docentes = () => {
                   <FontAwesomeIcon icon={faCalendarAlt} />
                 </i>
               </div>
-              <select name="" id="">
-                <option value="">Todos</option>
-                {materias.map((objMateria) => {
-                  return (
-                    <option
-                      key={objMateria.id_mate}
-                      value={objMateria.materia_mate}
-                    >
-                      {objMateria.materia_mate}
-                    </option>
-                  );
-                })}
-              </select>
+              <DocenteMaterias />
             </div>
           </div>
         </section>

@@ -847,6 +847,7 @@ textarea:hover {
 }
 .carddoc__imagen img {
   width: var(--ancho-profe);
+  height: 186px;
 }
 .carddoc__nombre {
   background-color: var(--color-sec);

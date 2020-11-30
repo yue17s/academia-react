@@ -24,7 +24,9 @@ SECRET_KEY = 'akg)*7u&6m=f^n*vmf^#401858#b2py&&-%xw89vo-xjo9fv4p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # para el HOST
+# ALLOWED_HOSTS = []   # para el HOST
+
 
 # Application definition
 
@@ -36,6 +38,28 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',  # Une 2 servidores
+]
+# Desabilita la API navegable de produccion de DJANGO
+REST_FRAMEWORK = {
+    # No aparece la herramienta con interface grafica
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    # Permite poner Seguridad a las APIS
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+CORS_ORIGINS_WHITELIST = [
+    "http://localhost:3000",  # REACT
+    "http://127.0.0.1:8000"  # DJANGO
 ]
 
 MIDDLEWARE = [
@@ -46,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'academiab.urls'
@@ -72,13 +97,30 @@ WSGI_APPLICATION = 'academiab.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'academiadb',
+    #     'USER': 'root',
+    #     'PASSWORD': '',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306'
+    # },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'academiadb',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'ssakuraa',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432'
+    # }
+    # ************************************************************
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'academiadb',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd14k6ph7ggcu6q',
+        'USER': 'dbybidkwjiidjp',
+        'PASSWORD': 'fa89a86c7fae75303b1c53b5739ddf8fcecdd4128edd639e1259e6a7b64dcdfd',
+        'HOST': 'ec2-34-202-65-210.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -116,4 +158,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'core.User'  # Cambia el nombre del AUTH_USER por CORE_USER
+
+# STATIC_ROOT = 'staticfiles'
+MEDIA_ROOT = 'media'
