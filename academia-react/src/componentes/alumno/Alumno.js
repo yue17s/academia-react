@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
+import { getAlumno, postLogin } from "../../services/authService";
+import AuthState from "../../context/auth/authState";
+import AuthContext from "../../context/auth/authContext";
 
-const Alumno = (props) => {
+const Alumno = ({ history }) => {
   const goAlumnoSesion = () => {
-    props.history.push("/Alumno_sesion");
+    //props.history.push("/Alumno_sesion");
+    getAlumno();
   };
 
+  const { iniciarSesionState } = useContext(AuthContext);
   //
   const [formulario, setFormulario] = useState({
     codalum: "",
@@ -24,7 +29,17 @@ const Alumno = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formulario);
+    getAlumno(formulario).then((rpta) => {
+      console.log("RESPUESTA ES: ");
+      console.log(rpta);
+      if (!rpta.detail) {
+        console.log("EXITO!!!");
+        iniciarSesionState(rpta);
+        history.push("/Alumno_sesion");
+      }
+    });
   };
+
   return (
     <>
       <header>
@@ -71,7 +86,7 @@ const Alumno = (props) => {
                 type="submit"
                 className="iniciar"
                 id="iniciar"
-                onClick={goAlumnoSesion}
+                //onClick={goAlumnoSesion}
               >
                 Iniciar Sesión
               </button>

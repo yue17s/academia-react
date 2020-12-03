@@ -1,9 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
+import AuthContext from "../../context/auth/authContext";
+import { withRouter } from "react-router-dom";
 
-const Alumno_sesion = () => {
+const Alumno_sesion = ({ history }) => {
+  const {
+    autenticado,
+    tiposesion,
+    imagen_alu,
+    dni_alu,
+    ape_alu,
+    nom_alu,
+    dire_alu,
+    celular_alu,
+    email_alu,
+    papa_alu,
+    mama_alu,
+  } = useContext(AuthContext);
+  const goLogin = () => history.push("/Alumno");
+
   return (
     <>
       <header>
@@ -20,13 +37,15 @@ const Alumno_sesion = () => {
           <div className="alumnos contenedor">
             <div className="alumnos__titulo">
               <h3>ALUMNO</h3>
-              <h6>Selección: TODOS</h6>
+              <h6>
+                {nom_alu} {ape_alu} Bienvenido
+              </h6>
             </div>
             <div className="alumnos__complementario">
               <div className="alumnos__alumno">
                 <div className="alumnos__left">
                   <div className="alumnos__imagen">
-                    <img src={imgs[11].imagen} alt="" />
+                    <img src={imagen_alu} alt="" />
                   </div>
                   <div className="alumnos__descarga">
                     <button>VER ASISTENCIAS</button>
@@ -35,113 +54,102 @@ const Alumno_sesion = () => {
                   </div>
                 </div>
                 <div className="alumnos__right">
-                  <div className="alumnos__informacion">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="2">Información Personal</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>D.N.I:</td>
-                          <td>44523301</td>
-                        </tr>
-                        <tr>
-                          <td>Apellidos:</td>
-                          <td>Yagua Yepez</td>
-                        </tr>
-                        <tr>
-                          <td>Nombre(s):</td>
-                          <td>Miguel Alejandro</td>
-                        </tr>
-                        <tr>
-                          <td>Dirección:</td>
-                          <td>D-4 Urb. Las Brizas #456</td>
-                        </tr>
-                        <tr>
-                          <td>Distrito:</td>
-                          <td>Jose Luis Bustamante y Rivero</td>
-                        </tr>
-                        <tr>
-                          <td>Fecha de Nacimiento:</td>
-                          <td>25/05/1990</td>
-                        </tr>
-                        <tr>
-                          <td>Edad:</td>
-                          <td>17</td>
-                        </tr>
-                        <tr>
-                          <td>Teléfono:</td>
-                          <td>952145236</td>
-                        </tr>
-                        <tr>
-                          <td>Correo:</td>
-                          <td>miguelito@hotmail.com</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="2">Información Apoderado</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Apellidos:</td>
-                          <td>Yagua Chirinos</td>
-                        </tr>
-                        <tr>
-                          <td>Nombre(s):</td>
-                          <td>Paul Alex</td>
-                        </tr>
-                        <tr>
-                          <td>Teléfono:</td>
-                          <td>986222236</td>
-                        </tr>
-                        <tr>
-                          <td>Parentesco:</td>
-                          <td>Pápa</td>
-                        </tr>
-                        <tr>
-                          <td>Correo:</td>
-                          <td>papademiguelito@hotmail.com</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="2">Información Académica</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Sección:</td>
-                          <td>
-                            5A -{" "}
-                            <a href="./cur_horarios.html">
-                              Ver horarios (clic)
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Pagos:</td>
-                          <td>5 cuotas</td>
-                        </tr>
-                        <tr>
-                          <td>Deuda:</td>
-                          <td>
-                            4 cuotas (S/ 300.00) -{" "}
-                            <a href="./cur_horarios.html">
-                              Formas de pago (clic)
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                  {autenticado ? (
+                    <div className="alumnos__informacion">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th colspan="2">Información Personal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>D.N.I:</td>
+                            <td>{dni_alu}</td>
+                          </tr>
+                          <tr>
+                            <td>Apellidos:</td>
+                            <td>{ape_alu}</td>
+                          </tr>
+                          <tr>
+                            <td>Nombre(s):</td>
+                            <td>{nom_alu}</td>
+                          </tr>
+                          <tr>
+                            <td>Dirección:</td>
+                            <td>{dire_alu}</td>
+                          </tr>
+                          <tr>
+                            <td>Celular:</td>
+                            <td>{celular_alu}</td>
+                          </tr>
+                          <tr>
+                            <td>Correo:</td>
+                            <td>{email_alu}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th colspan="2">Información Apoderado</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Padre o Apoderado:</td>
+                            <td>{papa_alu}</td>
+                          </tr>
+                          <tr>
+                            <td>Madre:</td>
+                            <td>{mama_alu}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th colspan="2">Información Académica</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Sección:</td>
+                            <td>
+                              5A -{" "}
+                              <a href="./cur_horarios.html">
+                                Ver horarios (clic)
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Pagos:</td>
+                            <td>5 cuotas</td>
+                          </tr>
+                          <tr>
+                            <td>Deuda:</td>
+                            <td>
+                              4 cuotas (S/ 300.00) -{" "}
+                              <a href="./cur_horarios.html">
+                                Formas de pago (clic)
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        goLogin();
+                      }}
+                    >
+                      <i>
+                        <FontAwesomeIcon icon={faUser} />
+                      </i>{" "}
+                      Iniciar sesión
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

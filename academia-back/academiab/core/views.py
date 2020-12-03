@@ -4,7 +4,8 @@ from django.shortcuts import render
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
-from .serializers import AlumnosSerializer, DocentesSerializer, MateriaSerializer, UsuariosSerializer, \
+from .serializers import AlumnosSerializer, AlumnosLoginSerializer, DocentesSerializer, MateriaSerializer, \
+    UsuariosSerializer, \
     LibreriaSerializer, \
     LibrePediLibrePediDetaSerializer, UserSerializer
 from rest_framework import generics
@@ -35,6 +36,7 @@ class AlumnosCreateListViewset(generics.ListCreateAPIView):
     serializer_class = AlumnosSerializer
     permission_classes = (AllowAny,)
 
+
 # class AlumnoDetailViewset(generics.RetrieveAPIView):
 #     queryset = Alumnos.objects.all()
 #     serializer_class = AlumnosSerializer
@@ -44,6 +46,7 @@ class AlumnoFullViewset(viewsets.ModelViewSet):
     queryset = Alumnos.objects.all()
     serializer_class = AlumnosSerializer
     permission_classes = (AllowAny,)
+
 
 class RegistrarAlumnos(generics.CreateAPIView):
     permission_classes = (AllowAny,)
@@ -94,26 +97,15 @@ class RegistrarAlumnos(generics.CreateAPIView):
 #     reply = json.dumps(data)
 #     return HttpResponse(reply, content_type='application/json')
 
-class LoginAlumnoView(APIView):
-    queryset = User.objects.all()
+# class CallAlumnoView(generics.RetrieveAPIView)
+
+class DetalleAlumnosCodigoViewset(generics.RetrieveAPIView):
+    queryset = Alumnos.objects.all()
+    serializer_class = AlumnosSerializer
+    lookup_field = 'codigo_alu'
+    # lookup_fields = ['codigo_alu', 'pass_alu']
     permission_classes = (AllowAny,)
 
-    def post(self, request, format=None):
-        codigo_alu2 = request.data['codigo_alu']
-        pass_alu2 = request.data['pass_alu']
-        alumnos = authenticate(codigo_alu=codigo_alu2, pass_alu=pass_alu2)
-        if alumnos:
-            #token = Token.objects.get(user_id=user.pk)
-            data = {'codigo_alu': alumnos.codigo_alu,
-                    'apealu': alumnos.ape_alu,
-                    'nomalu': alumnos.nom_alu,
-                    'emailalu': alumnos.email_alu
-                    #'token': token.key
-                    }
-        else:
-            data = {'detail': 'Codigo de Alumno Incorrecto - CODIGO: ' + codigo_alu2 +' - PASWWORD: '+ pass_alu2 + ' - '}
-        reply = json.dumps(data)
-        return HttpResponse(reply, content_type='application/json')
 
 # ************************************************************************#
 # ************************************************************************#

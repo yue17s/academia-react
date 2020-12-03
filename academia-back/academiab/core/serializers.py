@@ -33,6 +33,12 @@ class AlumnosSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AlumnosLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alumnos
+        fields = ['codigo_alu', 'pass_alu']
+
+
 # *********************************************************************************#
 
 class MateriaSerializer(serializers.ModelSerializer):
@@ -68,8 +74,7 @@ class DocentesSerializer(serializers.ModelSerializer):
 
 
 # *********************************************************************************#
-
-
+# ******************************* LIBRERIA ******************************************#
 class LibreriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Libreria

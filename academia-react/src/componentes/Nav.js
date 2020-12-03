@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { withRouter } from "react-router-dom"; // recibe las propiedades del enrutamiento (goLogin)
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,9 +13,12 @@ import {
   faBookReader,
   faBookOpen,
   faAlignJustify,
+  faUserLock,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/style.css";
-const Nav = () => {
+import AuthContext from "../context/auth/authContext";
+
+const Nav = ({ history }) => {
   const [oscuro, setOscuro] = useState("navegador");
   const navRef = useRef();
   navRef.current = oscuro;
@@ -36,6 +40,13 @@ const Nav = () => {
     };
   }, []);
 
+  const { autenticado, ape_alu, tiposesion, cerrarSesion } = useContext(
+    AuthContext
+  );
+
+  const goLogin = () => history.push("/Alumno");
+  const goMain = () => history.push("/");
+
   return (
     <nav>
       <section id="sesion" className="sesion">
@@ -43,14 +54,33 @@ const Nav = () => {
           <div className="ses__usuario">
             <div className="ses__session">
               <div className="iniciar">
-                <Link to="/Sesion">
-                  <a href="./sesion.html">
+                {autenticado ? (
+                  <div>
+                    <span className="session_ape">Bienvenido {ape_alu} |</span> {" "}
+                    <button
+                      onClick={() => {
+                        cerrarSesion();
+                        goMain();
+                      }}
+                    >
+                      <i>
+                        <FontAwesomeIcon icon={faUserLock} />
+                      </i>{" "}
+                      Cerrar sesión
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => {
+                      goLogin();
+                    }}
+                  >
                     <i>
                       <FontAwesomeIcon icon={faUser} />
                     </i>{" "}
                     Iniciar sesión
-                  </a>
-                </Link>
+                  </button>
+                )}
               </div>
             </div>
             <div className="linea-right"></div>
@@ -189,4 +219,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default withRouter(Nav);

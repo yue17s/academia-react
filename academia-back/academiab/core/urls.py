@@ -19,7 +19,7 @@ urlpatterns = [
     #path('', include(router.urls)),  # LOGIN
     path('', index, name='index'),
     #**********************************************************************************#
-    path('LoginAlumno/', views.LoginAlumnoView.as_view()),  # POST --> http://127.0.0.1:8000/LoginAlumno/
+    path('Detail_Alumno/', views.DetalleAlumnosCodigoViewset.as_view()),  # GET --> http://127.0.0.1:8000/Detail_Alumno/<codigo_alu>/
     path('Create_List_Alumnos/', views.AlumnosCreateListViewset.as_view()),  # POST --> http://127.0.0.1:8000/Create_List_Alumnos/
     #path('Detail_Alumno/', views.AlumnoDetailViewset.as_view()),  # POST --> http://127.0.0.1:8000/Detail_Alumnos/
     path('Crear_Alumno/', views.RegistrarAlumnos.as_view()),  # POST --> http://127.0.0.1:8000/Create_One_Alumno/

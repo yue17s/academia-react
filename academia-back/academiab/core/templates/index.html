@@ -1,10 +1,35 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>INICIO</title>
-</head>
-<body>
-    <h1>Welcome a la Academia</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ACADEMIA Backend</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <section class="bienvenida">
+      <div class="contenedor">
+        <div class="bienvenida__titu">
+          <h3>Welcome!<br />al sistema de control de la</h3>
+          <h1>ACADEMIA</h1>
+        </div>
+        <div class="bienvenida__botones">
+          <div class="btn__front">
+            <button><i class="fas fa-globe"></i> - Ir a la pagina web</button>
+          </div>
+          <div class="btn__back">
+            <button onclick="javascript:window.open('https://academiayue.herokuapp.com/admin/', '_self');"><i
+                        class="fas fa-user-lock"></i> - Login al Backend
+                </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

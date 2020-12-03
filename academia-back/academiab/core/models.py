@@ -64,7 +64,8 @@ class Materia(models.Model):
         ordering = ['nom_mate']
 
 
-# ************************************************************************
+# ***************************************************************************************#
+# ********************************* ALUMNOS *********************************************#
 class Alumnos(models.Model):
     id_alu = models.AutoField(primary_key=True)
     codigo_alu = models.CharField(max_length=10)
@@ -126,6 +127,9 @@ class AlumnosNotas(models.Model):
         verbose_name = 'Alumno - nota'
         ordering = ['alumnos_id_alu']
 
+
+# ***************************************************************************************#
+# ******************************** BIBLIOTECA *******************************************#
 
 class Biblioteca(models.Model):
     id_bibli = models.AutoField(primary_key=True)
@@ -221,7 +225,8 @@ class CursosComple(models.Model):
         ordering = ['fechaini_cuco']
 
 
-# ****************************************************************************#
+# ***************************************************************************************#
+# ************************************* DOCENTES ****************************************#
 class Docentes(models.Model):
     id_doce = models.AutoField(primary_key=True)
     codigo_doce = models.CharField("Codigo:", max_length=10)
@@ -250,19 +255,8 @@ class Docentes(models.Model):
         ordering = ['ape_doce']
 
 
-# ****************************************************************************#
-class Facturacion(models.Model):
-    id_factu = models.AutoField(primary_key=True)
-    libreria_pedido_id_lipe = models.ForeignKey('LibreriaPedido', models.DO_NOTHING,
-                                                db_column='libreria_pedido_id_lipe')
-    subtotal_factu = models.DecimalField(max_digits=5, decimal_places=2)
-    igv_factu = models.DecimalField(max_digits=5, decimal_places=2)
-    total_factu = models.DecimalField(max_digits=5, decimal_places=2)
-
-    class Meta:
-        managed = False
-        db_table = 'facturacion'
-        verbose_name_plural = "facturacion"
+# ***************************************************************************************#
+# ***************************************************************************************#
 
 
 class Horario(models.Model):
@@ -283,6 +277,7 @@ class Horario(models.Model):
 
 
 # ***************************************************************************************#
+# ************************************* LIBRERIA ****************************************#
 class Libreria(models.Model):
     id_libre = models.AutoField(primary_key=True)
     codigo_libre = models.CharField(max_length=6)
@@ -313,26 +308,26 @@ class Libreria(models.Model):
 
 
 class LibreriaPedido(models.Model):
-    codigo_lipe = models.CharField("Codigo del Pedido", max_length=6, primary_key=True)
+    codigo_lipe = models.IntegerField("Codigo del Pedido", max_length=6, primary_key=True)
     fecha_lipe = models.DateField("Fecha de Pedido")
-    entrego_lpd = models.BooleanField("Entregado")
+    entrego_lpd = models.BooleanField("¿Entregado?")
     usuarios = models.ForeignKey('Usuarios', models.DO_NOTHING, db_column='usuarios_id_usu',
                                  related_name="libreria_pedido")
 
     def __str__(self):
-        return self.codigo_lipe
+        return str(self.codigo_lipe)
 
     class Meta:
         managed = False
         db_table = 'libreria_pedido'
         verbose_name_plural = "libreria - pedidos"
         verbose_name = 'Libreria - pedido'
-        ordering = ['codigo_lipe']
+        # ordering = ['codigo_lipe']
 
 
 class LibreriaPedidoDetalle(models.Model):
     id_lpd = models.AutoField(primary_key=True)
-    libreria_pedido_codigo_lipe = models.ForeignKey(LibreriaPedido, models.DO_NOTHING,
+    libreria_pedido_codigo_lipe = models.ForeignKey('LibreriaPedido', models.DO_NOTHING,
                                                     db_column='libreria_pedido_codigo_lipe',
                                                     related_name="LibreriaPedidoDetallePedido")
     libreria = models.ForeignKey(Libreria, models.DO_NOTHING, db_column='libreria_id_libre',
@@ -352,6 +347,22 @@ class LibreriaPedidoDetalle(models.Model):
         ordering = ['libreria_pedido_codigo_lipe']
 
 
+class Facturacion(models.Model):
+    id_factu = models.AutoField(primary_key=True)
+    libreria_pedido_id_lipe = models.ForeignKey('LibreriaPedido', models.DO_NOTHING,
+                                                db_column='libreria_pedido_id_lipe')
+    subtotal_factu = models.DecimalField(max_digits=5, decimal_places=2)
+    igv_factu = models.DecimalField(max_digits=5, decimal_places=2)
+    total_factu = models.DecimalField(max_digits=5, decimal_places=2)
+
+    class Meta:
+        managed = False
+        db_table = 'facturacion'
+        verbose_name_plural = "facturacion"
+
+
+# ***************************************************************************************#
+# ***************************************************************************************#
 class Matricula(models.Model):
     id_mat = models.AutoField(primary_key=True)
     codigo_mat = models.CharField(max_length=5)
