@@ -1,6 +1,11 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faUserLock,
+  faBookReader,
+  faClipboard,
+} from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import AuthContext from "../../context/auth/authContext";
 import { withRouter } from "react-router-dom";
@@ -19,7 +24,9 @@ const Alumno_sesion = ({ history }) => {
     papa_alu,
     mama_alu,
   } = useContext(AuthContext);
+  const { cerrarSesion } = useContext(AuthContext);
   const goLogin = () => history.push("/Alumno");
+  const goMain = () => history.push("/");
 
   return (
     <>
@@ -38,53 +45,75 @@ const Alumno_sesion = ({ history }) => {
             <div className="alumnos__titulo">
               <h3>ALUMNO</h3>
               <h6>
-                {nom_alu} {ape_alu} Bienvenido
+                {nom_alu} {ape_alu}
               </h6>
             </div>
-            <div className="alumnos__complementario">
-              <div className="alumnos__alumno">
-                <div className="alumnos__left">
-                  <div className="alumnos__imagen">
-                    <img src={imagen_alu} alt="" />
+            {autenticado ? (
+              <div className="alumnos__complementario">
+                <div className="alumnos__alumno">
+                  <div className="alumnos__left">
+                    <div className="alumnos__imagen">
+                      <img src={imagen_alu} alt="" />
+                    </div>
+                    <div className="alumnos__descarga">
+                      <button>
+                        <i>
+                          <FontAwesomeIcon icon={faClipboard} />
+                        </i>{" "}
+                        VER ASISTENCIAS
+                      </button>
+                      <button>
+                        <i>
+                          <FontAwesomeIcon icon={faBookReader} />
+                        </i>{" "}
+                        VER NOTAS
+                      </button>
+                      <button
+                        onClick={() => {
+                          cerrarSesion();
+                          goMain();
+                        }}
+                      >
+                        <i>
+                          <FontAwesomeIcon icon={faUserLock} />
+                        </i>{" "}
+                        Cerrar sesión
+                      </button>
+                    </div>
                   </div>
-                  <div className="alumnos__descarga">
-                    <button>VER ASISTENCIAS</button>
-                    <button>VER NOTAS</button>
-                    <button>CERRAR SESIÓN</button>
-                  </div>
-                </div>
-                <div className="alumnos__right">
-                  {autenticado ? (
+                  <div className="alumnos__right">
                     <div className="alumnos__informacion">
                       <table>
                         <thead>
                           <tr>
-                            <th colspan="2">Información Personal</th>
+                            <th colspan="2" className="al__titulo">
+                              Información Personal
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>D.N.I:</td>
+                            <td className="estatico al_subtitulo">D.N.I:</td>
                             <td>{dni_alu}</td>
                           </tr>
                           <tr>
-                            <td>Apellidos:</td>
+                            <td className="al_subtitulo">Apellidos:</td>
                             <td>{ape_alu}</td>
                           </tr>
                           <tr>
-                            <td>Nombre(s):</td>
+                            <td className="al_subtitulo">Nombre(s):</td>
                             <td>{nom_alu}</td>
                           </tr>
                           <tr>
-                            <td>Dirección:</td>
+                            <td className="al_subtitulo">Dirección:</td>
                             <td>{dire_alu}</td>
                           </tr>
                           <tr>
-                            <td>Celular:</td>
+                            <td className="al_subtitulo">Celular:</td>
                             <td>{celular_alu}</td>
                           </tr>
                           <tr>
-                            <td>Correo:</td>
+                            <td className="al_subtitulo">Correo:</td>
                             <td>{email_alu}</td>
                           </tr>
                         </tbody>
@@ -92,16 +121,18 @@ const Alumno_sesion = ({ history }) => {
                       <table>
                         <thead>
                           <tr>
-                            <th colspan="2">Información Apoderado</th>
+                            <th colspan="2" className="al__titulo">
+                              Información Apoderado(s)
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Padre o Apoderado:</td>
+                            <td className="estatico al_subtitulo">Padre:</td>
                             <td>{papa_alu}</td>
                           </tr>
                           <tr>
-                            <td>Madre:</td>
+                            <td className="al_subtitulo">Madre:</td>
                             <td>{mama_alu}</td>
                           </tr>
                         </tbody>
@@ -109,12 +140,14 @@ const Alumno_sesion = ({ history }) => {
                       <table>
                         <thead>
                           <tr>
-                            <th colspan="2">Información Académica</th>
+                            <th colspan="2" className="al__titulo">
+                              Información Académica
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Sección:</td>
+                            <td className="estatico al_subtitulo">Sección:</td>
                             <td>
                               5A -{" "}
                               <a href="./cur_horarios.html">
@@ -123,11 +156,11 @@ const Alumno_sesion = ({ history }) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Pagos:</td>
+                            <td className="al_subtitulo">Pagos:</td>
                             <td>5 cuotas</td>
                           </tr>
                           <tr>
-                            <td>Deuda:</td>
+                            <td className="al_subtitulo">Deuda:</td>
                             <td>
                               4 cuotas (S/ 300.00) -{" "}
                               <a href="./cur_horarios.html">
@@ -138,21 +171,23 @@ const Alumno_sesion = ({ history }) => {
                         </tbody>
                       </table>
                     </div>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        goLogin();
-                      }}
-                    >
-                      <i>
-                        <FontAwesomeIcon icon={faUser} />
-                      </i>{" "}
-                      Iniciar sesión
-                    </button>
-                  )}
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="alumnos__sesion">
+                <button
+                  onClick={() => {
+                    goLogin();
+                  }}
+                >
+                  <i>
+                    <FontAwesomeIcon icon={faUser} />
+                  </i>{" "}
+                  Iniciar sesión
+                </button>
+              </div>
+            )}
           </div>
         </section>
       </main>

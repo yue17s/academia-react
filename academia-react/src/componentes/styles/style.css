@@ -43,6 +43,16 @@ body::-webkit-scrollbar-thumb:active {
 .claro {
   background-color: var(--color-claro);
 }
+.linea {
+  width: 100%;
+  height: 5px;
+  background-color: var(--color-sec);
+}
+.linea-slim {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-claro);
+}
 .linea-right {
   border-right: 2px solid var(--color-gris);
   height: 20px;
@@ -698,11 +708,7 @@ textarea:hover {
 .act__titu .cont {
   flex: 1;
 }
-.linea {
-  width: 100%;
-  height: 5px;
-  background-color: var(--color-sec);
-}
+
 .actividades__actividades {
   display: flex;
   flex-direction: row;
@@ -1041,13 +1047,18 @@ textarea:hover {
   display: flex;
   justify-content: center;
 }
+.alumnos__sesion {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
 .alumnos__alumno {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 .alumnos__left {
-  width: 25%;
+  width: 300px;
 }
 .alumnos__right {
   width: 60%;
@@ -1066,6 +1077,23 @@ textarea:hover {
 }
 .alumnos__informacion {
   margin-left: 40px;
+}
+.alumnos__informacion table {
+  width: 100%;
+}
+.alumnos__informacion tr {
+  height: 35px;
+}
+.alumnos__informacion .estatico {
+  width: 110px;
+}
+.alumnos__informacion .al__titulo {
+  background-color: var(--color-pri-70);
+  color: #ffffff;
+}
+.alumnos__informacion .al_subtitulo {
+  font-weight: bold;
+  padding-left: 20px;
 }
 /********************* BIBLIOTECA ****************/
 .dispo {

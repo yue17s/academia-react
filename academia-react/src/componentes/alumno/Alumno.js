@@ -4,8 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import { getAlumno, postLogin } from "../../services/authService";
-import AuthState from "../../context/auth/authState";
+//import AuthState from "../../context/auth/authState";
 import AuthContext from "../../context/auth/authContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Alumno = ({ history }) => {
   const goAlumnoSesion = () => {
@@ -26,16 +28,40 @@ const Alumno = ({ history }) => {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = (e) => {
+    const MySwal = withReactContent(Swal);
+    if (formulario.codalum == "") {
+      MySwal.fire({
+        title: <p>Campo "Código de alumno" en blanco</p>,
+        footer: "Academia 2020",
+        /*didOpen: () => {
+              MySwal.clickConfirm();
+            },*/
+      });
+      /*.then(() => {
+         return MySwal.fire(<p>Shorthand works too</p>);
+        });*/
+    }
     e.preventDefault();
-    console.log(formulario);
     getAlumno(formulario).then((rpta) => {
-      console.log("RESPUESTA ES: ");
-      console.log(rpta);
       if (!rpta.detail) {
         console.log("EXITO!!!");
         iniciarSesionState(rpta);
         history.push("/Alumno_sesion");
+      } else {
+        console.log("USUARIO INCORRECTO");
+
+        MySwal.fire({
+          title: <p>Codigo de alumno incorrecto</p>,
+          footer: "Academia 2020",
+          /*didOpen: () => {
+                MySwal.clickConfirm();
+              },*/
+        });
+        /*.then(() => {
+           return MySwal.fire(<p>Shorthand works too</p>);
+          });*/
       }
     });
   };
@@ -67,7 +93,7 @@ const Alumno = ({ history }) => {
                   name="codalum"
                   value={formulario.codalum}
                   onChange={handleChange}
-                  placeholder="Codigo de Alumno*"
+                  placeholder="Codigo de alumno*"
                 />
               </div>
               <div className="frm__input">
