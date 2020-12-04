@@ -1826,3 +1826,8 @@ textarea:hover {
     margin-bottom: 10px;
   }
 }
+
+/********************************/
+.react-pdf__Document {
+  transform: scale(1.3);
+}

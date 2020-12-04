@@ -56,7 +56,7 @@ const Nav = ({ history }) => {
               <div className="iniciar">
                 {autenticado ? (
                   <div>
-                    <span className="session_ape">Bienvenido {ape_alu} |</span> {" "}
+                    <span className="session_ape">Bienvenido {ape_alu} |</span>{" "}
                     <button
                       onClick={() => {
                         cerrarSesion();
@@ -160,9 +160,15 @@ const Nav = ({ history }) => {
                   </ul>
                 </li>
                 <li>
-                  <Link to="/Alumno">
-                    <a href="./alumno.html">Alumno</a>
-                  </Link>
+                  {autenticado ? (
+                    <Link to="/Alumno_sesion">
+                      <a>Alumno</a>
+                    </Link>
+                  ) : (
+                    <Link to="/Alumno">
+                      <a>Alumno</a>
+                    </Link>
+                  )}
                 </li>
                 <li>
                   <a>

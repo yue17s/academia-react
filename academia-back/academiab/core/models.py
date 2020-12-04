@@ -94,11 +94,11 @@ class Alumnos(models.Model):
 
 class AlumnosAsistencia(models.Model):
     id_asis = models.AutoField(primary_key=True)
-    alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu')
+    alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu', related_name="AlumnosAsistenciaAlumnos")
     fecha_asis = models.DateField()
 
     def __str__(self):
-        return self.alumnos_id_alu
+        return str(self.alumnos_id_alu)+ " - Fecha: " + str(self.fecha_asis)
 
     class Meta:
         managed = False
@@ -386,7 +386,7 @@ class Secciones(models.Model):
     aula_sec = models.CharField(max_length=6)
 
     def __str__(self):
-        return self.nom_sec + " - N°: " + self.aula_sec
+        return self.nom_sec + " - # " + self.aula_sec
 
     class Meta:
         managed = False
