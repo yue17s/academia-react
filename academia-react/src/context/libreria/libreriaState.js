@@ -35,19 +35,30 @@ const LibreriaState = (props) => {
 
   const agregarAlCarrito = (objLibro) => {
     let { carrito } = state;
-    if (carrito.find((objLibroCarrito) => objLibroCarrito.id_libre === objLibro.id_libre)) {
-      // SI HAY LIBRO
+    if (
+      carrito.find(
+        (objLibroCarrito) => objLibroCarrito.id_libre === objLibro.id_libre
+      )
+    ) {
+      // SI HAY LIBRO EN EL CARRITO
       carrito = carrito.map((objLibroCarrito) => {
+        //const suma = objLibroCarrito.subtotal + objLibroCarrito.subtotal;
+        //console.log(suma);
         if (objLibroCarrito.id_libre === objLibro.id_libre) {
           objLibroCarrito.cant++;
+          objLibroCarrito.subtotal =
+            objLibroCarrito.precio_libre * objLibroCarrito.cant;
         }
+
         return objLibroCarrito;
       });
     } else {
-      // NO HAY LIBRO
+      // NO HAY LIBRO EN EL CARRITO
       carrito.push({
         ...objLibro,
         cant: 1,
+        subcant: 1,
+        subtotal: parseInt(objLibro.precio_libre),
       });
     }
     dispatch({

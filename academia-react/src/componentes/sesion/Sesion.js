@@ -1,10 +1,54 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import imgs from "../imgs";
+import AuthContext from "../../context/auth/authContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { getUsuario } from "../../services/authService";
 
-const Sesion = () => {
+const Sesion = ({ history }) => {
+  const { iniciarSesionState } = useContext(AuthContext);
+
+  const [formulario, setFormulario] = useState({
+    emailusu: "",
+    passusu: "",
+    tiposesion: "",
+  });
+
+  const handleChange = (e) => {
+    setFormulario({
+      ...formulario,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    const MySwal = withReactContent(Swal);
+    if (formulario.emailusu == "") {
+      MySwal.fire({
+        title: <p>Campo "Correo de usuario" en blanco</p>,
+        footer: "Academia 2020",
+      });
+    }
+    e.preventDefault();
+
+    getUsuario(formulario).then((rpta) => {
+      if (!rpta.detail) {
+        console.log("EXITO!!!");
+        iniciarSesionState(rpta);
+        history.push("/Libreria");
+      } else {
+        console.log("USUARIO INCORRECTO");
+
+        MySwal.fire({
+          title: <p>Codigo de usuario incorrecto</p>,
+          footer: "Academia 2020",
+        });
+      }
+    });
+  };
   return (
     <>
       <header>
@@ -22,18 +66,30 @@ const Sesion = () => {
             <div class="formulario__cabecera">
               <h4>Iniciar Sesión</h4>
             </div>
-            <form action="./alumno-sesion.html" target="_self">
+            <form onSubmit={handleSubmit} target="_self">
               <div class="frm__input">
                 <i>
                   <FontAwesomeIcon icon={faEnvelope} />
                 </i>
-                <input placeholder="Correo electrónico*" />
+                <input
+                  type="text"
+                  name="emailusu"
+                  value={formulario.emailusu}
+                  onChange={handleChange}
+                  placeholder="Correo electrónico*"
+                />
               </div>
               <div class="frm__input">
                 <i>
                   <FontAwesomeIcon icon={faLock} />
                 </i>
-                <input placeholder="Contraseña*" />
+                <input
+                  type="password"
+                  name="passusu"
+                  value={formulario.passusu}
+                  onChange={handleChange}
+                  placeholder="Contraseña*"
+                />
               </div>
               <button type="submit" class="iniciar" id="iniciar">
                 Iniciar Sesión

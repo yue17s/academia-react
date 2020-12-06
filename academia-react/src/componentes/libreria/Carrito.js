@@ -16,89 +16,89 @@ const Carrito = () => {
         </div>
       </header>
       <main>
-        <section class="seccion">
-          <div class="carrito contenedor">
-            <div class="carrito__titulo">
+        <section className="seccion">
+          <div className="carrito contenedor">
+            <div className="carrito__titulo">
               <h3>Carrito de Compras</h3>
             </div>
-            <div class="carrito__compras">
-              <div class="carrito__left">
-                <ul class="carrito__listcontenedor">
-                  <li class="carrito__detalle">
-                    <div class="carri__img ctitu">
+            <div className="carrito__compras">
+              <div className="carrito__left">
+                <ul className="carrito__listcontenedor">
+                  <li className="carrito__detalle">
+                    <div className="carri__img ctitu">
                       <span>Imagen</span>
                     </div>
-                    <div class="carri__nombre ctitu">
+                    <div className="carri__nombre ctitu">
                       <span>Compra</span>
                     </div>
-                    <div class="carri__precio ctitu">
+                    <div className="carri__precio ctitu">
                       <span>Precio</span>
                     </div>
                   </li>
-                  <li class="carrito__detalle">
-                    <div class="carri__img">
+                  <li className="carrito__detalle">
+                    <div className="carri__img">
                       <img src={imgs[12].imagen} alt="" />
                     </div>
-                    <div class="carri__nombre">
-                      <div class="carri__nom">
+                    <div className="carri__nombre">
+                      <div className="carri__nom">
                         <a href="">
                           Buenas Escrituras de la sociedad contemporanea de lima
                           y arequipa en el siglo XX
                         </a>
                       </div>
-                      <div class="carri__btn">
-                        <div class="carri__cant">
+                      <div className="carri__btn">
+                        <div className="carri__cant">
                           Cantidad:
                           <select>
                             <option value="1">1</option>
                             <option value="2">2</option>
                           </select>
                         </div>
-                        <button class="oscuro">Eliminar</button>
+                        <button className="oscuro">Eliminar</button>
                       </div>
                     </div>
-                    <div class="carri__precio">
+                    <div className="carri__precio">
                       <span>S/ 9999.00</span>
                     </div>
                   </li>
-                  <li class="carrito__detalle">
-                    <div class="carri__img">
+                  <li className="carrito__detalle">
+                    <div className="carri__img">
                       <img src={imgs[12].imagen} alt="" />
                     </div>
-                    <div class="carri__nombre">
-                      <div class="carri__nom">
+                    <div className="carri__nombre">
+                      <div className="carri__nom">
                         <a href="">
                           Buenas Escrituras de la sociedad contemporanea de lima
                           y arequipa en el siglo XX
                         </a>
                       </div>
-                      <div class="carri__btn">
-                        <div class="carri__cant">
+                      <div className="carri__btn">
+                        <div className="carri__cant">
                           Cantidad:
                           <select>
                             <option value="1">1</option>
                             <option value="2">2</option>
                           </select>
                         </div>
-                        <button class="oscuro">Eliminar</button>
+                        <button className="oscuro">Eliminar</button>
                       </div>
                     </div>
-                    <div class="carri__precio">
+                    <div className="carri__precio">
                       <span>S/ 989.00</span>
                     </div>
                   </li>
                 </ul>
               </div>
-              <div class="carrito__right">
+              <div className="carrito__right">
                 <table>
                   <tbody>
                     <tr>
-                      <td class="carri__txt">Total items:</td>
-                      <td class="carri__deta">3</td>
+                      <td className="carri__txt">Total items:</td>
+                      <td className="carri__deta">3</td>
                     </tr>
                     <tr>
-                      <td class="carri__txt">Subtotal: S/</td>
-                      <td class="carri__deta">5500.00</td>
+                      <td className="carri__txt">Subtotal: S/</td>
+                      <td className="carri__deta">5500.00</td>
                     </tr>
                   </tbody>
                 </table>

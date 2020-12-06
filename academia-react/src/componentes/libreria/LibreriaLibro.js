@@ -17,7 +17,7 @@ const LibreriaLibro = ({ objLibreria }) => {
           </div>
           <div className="card__nombre">
             <h6>
-              <a href="">{objLibreria.titulo_libre}</a>
+              <a>{objLibreria.titulo_libre}</a>
             </h6>
           </div>
           <div className="card__subnombre">

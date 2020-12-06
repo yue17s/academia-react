@@ -40,12 +40,25 @@ const Nav = ({ history }) => {
     };
   }, []);
 
-  const { autenticado, ape_alu, tiposesion, cerrarSesion } = useContext(
-    AuthContext
-  );
-
+  const {
+    autenticado,
+    ape_alu,
+    ape_usu,
+    tiposesion,
+    cerrarSesion,
+    cargando,
+  } = useContext(AuthContext);
+  const goSesion = () => history.push("/Sesion");
   const goLogin = () => history.push("/Alumno");
   const goMain = () => history.push("/");
+
+  const usuario = "";
+
+  /*if (tiposesion == "USUARIO") {
+    usuario = { ape_usu };
+  } else if (tiposesion == "ALUMNO") {
+    usuario = { ape_alu };
+  }*/
 
   return (
     <nav>
@@ -54,9 +67,13 @@ const Nav = ({ history }) => {
           <div className="ses__usuario">
             <div className="ses__session">
               <div className="iniciar">
-                {autenticado ? (
+                {cargando ? (
+                  <span>Cargando...</span>
+                ) : (autenticado ? (
                   <div>
-                    <span className="session_ape">Bienvenido {ape_alu} |</span>{" "}
+                    <span className="session_ape">
+                      Bienvenido |
+                    </span>{" "}
                     <button
                       onClick={() => {
                         cerrarSesion();
@@ -72,7 +89,7 @@ const Nav = ({ history }) => {
                 ) : (
                   <button
                     onClick={() => {
-                      goLogin();
+                      goSesion();
                     }}
                   >
                     <i>
@@ -80,7 +97,7 @@ const Nav = ({ history }) => {
                     </i>{" "}
                     Iniciar sesión
                   </button>
-                )}
+                ))}
               </div>
             </div>
             <div className="linea-right"></div>

@@ -4,6 +4,7 @@ import { faBook, faSearch } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import LibreriaMaterias from "./LibreriaMaterias";
 import LibreriaLibros from "./LibreriaLibros";
+import LibreriaCarrito from "./LibreriaCarrito";
 
 const Libreria = (props) => {
   return (
@@ -50,7 +51,12 @@ const Libreria = (props) => {
               </div>
             </div>
             <div className="libros__libros" id="libros__libros">
-              <LibreriaLibros />
+              <div className="libros__all">
+                <LibreriaLibros />
+              </div>
+              <div className="libros__one">
+                <LibreriaCarrito />
+              </div>
             </div>
           </div>
         </section>

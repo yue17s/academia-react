@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import AuthContext from "./authContext";
 
 const authReducer = (stateActual, action) => {
@@ -7,11 +7,13 @@ const authReducer = (stateActual, action) => {
       ...stateActual,
       ...action.data,
       autenticado: true,
-      tiposesion: "alumno",
+      cargando: false,
+      
     };
   }
   if (action.type === "CERRAR_SESION") {
     return {
+      cargando: false,
       autenticado: false,
       tiposesion: null,
       codigo_alu: null,
@@ -32,8 +34,10 @@ const authReducer = (stateActual, action) => {
 
 const AuthState = (props) => {
   const [state, dispatch] = useReducer(authReducer, {
+    cargando: true,
     autenticado: false,
     tiposesion: null,
+
     codigo_alu: null,
     pass_alu: null,
     ape_alu: null,
@@ -46,9 +50,19 @@ const AuthState = (props) => {
     mama_alu: null,
     barra_alu: null,
     imagen_alu: null,
+
+    dni_usu: null,
+    pass_usu: null,
+    ape_usu: null,
+    nom_usu: null,
+    dire_usu: null,
+    email_usu: null,
+    imagen_usu: null,
+    activo: null,
   });
 
   const iniciarSesionState = (objSesion) => {
+    localStorage.setItem("sesion", JSON.stringify(objSesion));
     dispatch({
       type: "INICIAR_SESION",
       data: { ...objSesion },
@@ -56,16 +70,38 @@ const AuthState = (props) => {
   };
 
   const cerrarSesion = () => {
+    localStorage.removeItem("sesion");
     dispatch({
       type: "CERRAR_SESION",
     });
   };
 
-  
+  const iniciarSesionConLocalStorage = () => {
+    const stringSesion = localStorage.getItem("sesion");
+    if (stringSesion) {
+      const objSesion = JSON.stringify(stringSesion);
+      console.log(objSesion);
+      // setTimeout(() => {
+      dispatch({
+        type: "INICIAR_SESION",
+        data: { ...objSesion },
+      });
+      // }, 2000);
+    } else {
+      console.log("NO HABIA UNA SESION ACTIVA");
+    }
+  };
+
+  useEffect(() => {
+    iniciarSesionConLocalStorage();
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
         autenticado: state.autenticado,
+        //cargando: state.cargando,
+
         imagen_alu: state.imagen_alu,
         dni_alu: state.dni_alu,
         ape_alu: state.ape_alu,
@@ -75,6 +111,10 @@ const AuthState = (props) => {
         email_alu: state.email_alu,
         papa_alu: state.papa_alu,
         mama_alu: state.mama_alu,
+
+        dni_usu: state.dni_usu,
+        ape_usu: state.ape_usu,
+
         tiposesion: state.tiposesion,
         iniciarSesionState,
         cerrarSesion,

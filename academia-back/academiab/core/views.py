@@ -4,15 +4,19 @@ from django.shortcuts import render
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
-from .serializers import AlumnosSerializer, AlumnosNotasSerializer, DetalleAlumnosNotasSerializer, AlumnosLoginSerializer, DocentesSerializer, \
+from .serializers import AlumnosSerializer, AlumnosAsistenciaSerializer, AlumnosNotasSerializer, \
+    DetalleAlumnosAsistenciaSerializer, \
+    DetalleAlumnosNotasSerializer, \
+    AlumnosLoginSerializer, DocentesSerializer, \
     MateriaSerializer, \
     UsuariosSerializer, \
     LibreriaSerializer, \
-    LibrePediLibrePediDetaSerializer, UserSerializer, MateriaLibreriaSerializer
+    LibrePediLibrePediDetaSerializer, UserSerializer, UsuariosSerializer, MateriaLibreriaSerializer
 from rest_framework import generics
 from rest_framework import viewsets  # METODOS para Listas
 import json
-from .models import Alumnos, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, LibreriaPedidoDetalle
+from .models import Alumnos, AlumnosAsistencia, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, \
+    LibreriaPedidoDetalle
 from .models import User  # LOGIN
 from rest_framework.authtoken.models import Token
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -100,6 +104,9 @@ class RegistrarAlumnos(generics.CreateAPIView):
 #     return HttpResponse(reply, content_type='application/json')
 
 # class CallAlumnoView(generics.RetrieveAPIView)
+
+
+############################################################################################
 # **************** para llamar 2 variables (usuario y contraseña) **************************
 class MultipleFieldLookupMixin:
     def get_object(self):
@@ -121,6 +128,12 @@ class DetalleAlumnosCodigoViewset(MultipleFieldLookupMixin, generics.RetrieveAPI
     permission_classes = (AllowAny,)
 
 
+class DetalleAlumnosAsistenciaViewset(generics.ListCreateAPIView):
+    queryset = AlumnosAsistencia.objects.all()
+    serializer_class = DetalleAlumnosAsistenciaSerializer
+    permission_classes = (AllowAny,)
+
+
 class DetalleAlumnosNotasViewset(generics.ListCreateAPIView):
     queryset = AlumnosNotas.objects.all()
     serializer_class = DetalleAlumnosNotasSerializer
@@ -131,6 +144,19 @@ class AlumnosNotasViewset(generics.ListAPIView):
     queryset = Alumnos.objects.all()
     serializer_class = AlumnosNotasSerializer
     permission_classes = (AllowAny,)
+
+
+class DetalleAlumnosAsistenciaViewset(generics.ListCreateAPIView):
+    queryset = AlumnosAsistencia.objects.all()
+    serializer_class = DetalleAlumnosAsistenciaSerializer
+    permission_classes = (AllowAny,)
+
+
+class AlumnosAsistenciaViewset(generics.ListAPIView):
+    queryset = Alumnos.objects.all()
+    serializer_class = AlumnosAsistenciaSerializer
+    permission_classes = (AllowAny,)
+
 
 # ************************ FIN Usuario y Contrasenia *********************#
 # ************************************************************************#
@@ -204,7 +230,14 @@ class DocentesDetailPkViewset(generics.RetrieveAPIView):
 
 
 # ************************************************************#
-# ************************************************************#
+# ******************** USUARIO *******************************#
+class DetalleUsuariosCodigoViewset(MultipleFieldLookupMixin, generics.RetrieveAPIView):
+    queryset = Usuarios.objects.all()
+    serializer_class = UsuariosSerializer
+    lookup_fields = ('email_usu', 'pass_usu')
+    permission_classes = (AllowAny,)
+
+
 class RegistrarUsuarios(generics.CreateAPIView):
     # permission_classes = (AllowAny,)
 

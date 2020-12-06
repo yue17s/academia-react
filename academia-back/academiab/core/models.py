@@ -68,18 +68,19 @@ class Materia(models.Model):
 # ********************************* ALUMNOS *********************************************#
 class Alumnos(models.Model):
     id_alu = models.AutoField(primary_key=True)
-    codigo_alu = models.CharField(max_length=10)
-    ape_alu = models.CharField(max_length=150)
-    nom_alu = models.CharField(max_length=150)
-    dni_alu = models.CharField(max_length=8)
-    dire_alu = models.CharField(max_length=250)
-    barra_alu = models.DecimalField(max_digits=13, decimal_places=0)
-    email_alu = models.CharField(max_length=50)
-    celular_alu = models.DecimalField(max_digits=12, decimal_places=0)
-    papa_alu = models.CharField(max_length=250)
-    mama_alu = models.CharField(max_length=250)
-    imagen_alu = models.CharField(max_length=350)
-    pass_alu = models.CharField(max_length=120)
+    codigo_alu = models.CharField("Codigo", max_length=10, help_text="5 caracteres - Ej. AL000")
+    ape_alu = models.CharField("Apellidos", max_length=150)
+    nom_alu = models.CharField("Nombre(s)", max_length=150)
+    dni_alu = models.CharField("D.N.I.", max_length=8, help_text="8 digitos")
+    dire_alu = models.CharField("Direccion de domicilio", max_length=250)
+    barra_alu = models.DecimalField("Codigo de barras", max_digits=13, decimal_places=0, help_text="12 digitos")
+    email_alu = models.CharField("Email personal", max_length=50)
+    celular_alu = models.IntegerField("Celular", help_text="9 digitos")
+    papa_alu = models.CharField("Apellidos y nombres del padre", max_length=250)
+    mama_alu = models.CharField("Apellidos y nombres de la madre", max_length=250)
+    imagen_alu = models.CharField("Fotografia", max_length=350)
+    pass_alu = models.CharField("Password", max_length=120)
+    tiposesion = models.CharField("Tipo de sesion", max_length=12, default="ALUMNO")
 
     def __str__(self):
         return self.ape_alu + ", " + self.nom_alu + " - " + self.codigo_alu
@@ -95,7 +96,7 @@ class Alumnos(models.Model):
 class AlumnosAsistencia(models.Model):
     id_asis = models.AutoField(primary_key=True)
     alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu',
-                                       related_name="AlumnosAsistenciaAlumnos")
+                                       related_name="alumnosAsistenciaAlumnos")
     fecha_asis = models.DateField("Fecha que asistio")
 
     def __str__(self):
@@ -113,13 +114,15 @@ class AlumnosNotas(models.Model):
     id_nota = models.AutoField(primary_key=True)
     alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu',
                                        related_name="alumnosNotasAlumnos")
-    matricula_id_mat = models.ForeignKey('Matricula', models.DO_NOTHING, db_column='matricula_id_mat')
-    cursos_id_curso = models.ForeignKey('Cursos', models.DO_NOTHING, db_column='cursos_id_curso')
+    matricula_id_mat = models.ForeignKey('Matricula', models.DO_NOTHING, db_column='matricula_id_mat',
+                                         related_name="alumnosNotasMatricula")
+    cursos_id_curso = models.ForeignKey('Cursos', models.DO_NOTHING, db_column='cursos_id_curso',
+                                        related_name="alumnosNotasCurso")
     nota1_nota = models.DecimalField("Nota 1", max_digits=4, decimal_places=2, default=0,
                                      help_text='Ej. 10.30 -- ( 0 a 20)')
     nota2_nota = models.DecimalField("Nota 2", max_digits=4, decimal_places=2, default=0,
                                      help_text='Ej. 10.30 -- ( 0 a 20)')
-    promedio_nota = models.DecimalField("Promedio", max_digits=4, decimal_places=2)
+    promedio_nota = models.DecimalField("Promedio", max_digits=4, decimal_places=2, help_text='(Nota 1 + Nota 2)/2')
 
     def __str__(self):
         return str(self.alumnos_id_alu) + ' | ' + str(self.cursos_id_curso)
@@ -145,7 +148,7 @@ class Biblioteca(models.Model):
     edicion_bibli = models.DecimalField(max_digits=4, decimal_places=0)
     isbn_bibli = models.CharField(max_length=12)
     stock_bibli = models.DecimalField(max_digits=3, decimal_places=0)
-    barra_bibli = models.DecimalField(max_digits=13, decimal_places=0)
+    barra_bibli = models.DecimalField("Codigo de barras", max_digits=13, decimal_places=0, help_text="12 digitos")
     disponible_bibli = models.BooleanField(default=True)
     imagen_bibli = models.CharField(max_length=350)
 
@@ -239,7 +242,7 @@ class Docentes(models.Model):
     dni_doce = models.CharField("D.N.I", max_length=8, help_text="8 digitos")
     email_doce = models.CharField("Email", max_length=50)
     celular_doce = models.DecimalField("Celular", max_digits=12, decimal_places=0)
-    barra_doce = models.DecimalField("Codigo de Barras", max_digits=13, decimal_places=0, help_text="12 digitos")
+    barra_doce = models.DecimalField("Codigo de barras", max_digits=13, decimal_places=0, help_text="12 digitos")
     cv_doce = models.TextField("Curriculum")
     # imagen_doce = models.ImageField("Fotografia", upload_to='img/docentes/', blank=True, null=True)
     imagen_doce = models.CharField(max_length=350)
@@ -294,7 +297,7 @@ class Libreria(models.Model):
     isbn_libre = models.CharField("ISBN", max_length=12, help_text="12 Digitos")
     stock_libre = models.DecimalField("Stock", max_digits=3, decimal_places=0)
     precio_libre = models.DecimalField("Precio", max_digits=6, decimal_places=2)
-    barra_libre = models.DecimalField("Codigo de Barras", max_digits=13, decimal_places=0, help_text="13 digitos")
+    barra_libre = models.DecimalField("Codigo de barras", max_digits=13, decimal_places=0, help_text="13 digitos")
     disponible_libre = models.BooleanField("Disponible?", default=True)
     # imagen_libre = models.ImageField("Imagen Libro", upload_to='img/libreria/', blank=True, null=True)
     imagen_libre = models.CharField("Foto", max_length=350)
@@ -313,7 +316,7 @@ class Libreria(models.Model):
 
 
 class LibreriaPedido(models.Model):
-    codigo_lipe = models.IntegerField("Codigo del Pedido", max_length=6, primary_key=True)
+    codigo_lipe = models.IntegerField("Codigo del Pedido", primary_key=True, help_text="5 caracteres - Ej. 10000")
     fecha_lipe = models.DateField("Fecha de Pedido")
     entrego_lpd = models.BooleanField("¿Entregado?")
     usuarios = models.ForeignKey('Usuarios', models.DO_NOTHING, db_column='usuarios_id_usu',
@@ -403,7 +406,7 @@ class Secciones(models.Model):
 
 class Usuarios(models.Model):
     id_usu = models.AutoField(primary_key=True)
-    dni_usu = models.CharField("D.N.I.", max_length=8)
+    dni_usu = models.CharField("D.N.I.", max_length=8, help_text="8 digitos")
     ape_usu = models.CharField("Apellidos", max_length=150)
     nom_usu = models.CharField("Nombre(s)", max_length=150)
     dire_usu = models.CharField("Dirección", max_length=250)
@@ -414,6 +417,8 @@ class Usuarios(models.Model):
     imagen_usu = models.CharField(max_length=350)
     activo = models.BooleanField("Activo", default=True, help_text="Activo: 1 - Inactivo: 0")
     slug = models.SlugField(max_length=150, help_text="Slug del APELLIDO")
+    pass_usu = models.CharField("Password", max_length=120)
+    tiposesion = models.CharField("Tipo de sesion", max_length=12, default="USUARIO")
 
     def __str__(self):
         return self.ape_usu + ", " + self.nom_usu + " - " + self.dni_usu

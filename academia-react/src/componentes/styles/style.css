@@ -1225,6 +1225,54 @@ textarea:hover {
   font-size: 30px;
   margin: 0 20px;
 }
+
+.libre__carrito__right {
+  width: 300px;
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carrito__final {
+  width: 100%;
+  background-color: #ffffff;
+}
+.carrito__final p {
+  padding-left: 20px;
+}
+.libre__carrito__right thead {
+  border: none;
+}
+.libre__carrito__right tr {
+  border: none;
+}
+.libre__carrito__right td {
+  height: 30px;
+  border-bottom: 1px solid var(--color-gris);
+}
+.libre__carrito__right .lib {
+  width: 220px;
+}
+.libre__carrito__right .cant {
+  width: 80px;
+}
+.libre__carri__titu {
+  background-color: var(--color-pri-80);
+  color: #ffffff;
+  height: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+.libre__carri__deta {
+  width: 80px;
+  text-align: center;
+}
+.libre__carri__txt {
+  width: 140px;
+}
+.libre__carri__img img {
+  width: 80px;
+}
 .carousel__contenedor .rec-carousel .sc-bdfBwQ,
 .carousel__lista-act .rec-carousel .sc-bdfBwQ {
   display: flex;
@@ -1323,6 +1371,7 @@ textarea:hover {
 }
 .card__card {
   transition: 0.3s ease-in;
+  width: 225px;
 }
 .card__card:hover {
   box-shadow: 5px 5px 15px #aaaaaa;
@@ -1432,6 +1481,19 @@ textarea:hover {
   flex-direction: row;
   flex-wrap: wrap;
   background-color: #ffffff;
+}
+.libros__all {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 820px;
+  overflow: overlay;
+}
+.libros__one {
+  width: 350px;
+  background-color: var(--color-claro);
 }
 /***************** CARRITO **********************/
 .ctitu {

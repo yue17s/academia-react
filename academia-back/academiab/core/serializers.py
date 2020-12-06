@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Alumnos, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, LibreriaPedidoDetalle
+from .models import Alumnos, AlumnosAsistencia, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, \
+    LibreriaPedidoDetalle
 from .models import User, Person  # LOGIN
 
 
@@ -40,13 +41,23 @@ class AlumnosLoginSerializer(serializers.ModelSerializer):
         fields = ['codigo_alu', 'pass_alu']
 
 
+class DetalleAlumnosAsistenciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlumnosAsistencia
+        # fields = '__all__'
+        fields = ['id_asis', 'alumnos_id_alu', 'fecha_asis']
+
+
 class DetalleAlumnosNotasSerializer(serializers.ModelSerializer):
     # nom_docemate = serializers.CharField(source='materia_id_mate.nom_mate')
+    alumnosNotasCurso = serializers.CharField(source='cursos_id_curso.nom_curso')
+    alumnosNotasMatricula = serializers.CharField(source='matricula_id_mat.codigo_mat')
 
     class Meta:
         model = AlumnosNotas
-        # fields = ['alumnos_id_alu', 'matricula_id_mat', 'cursos_id_curso', 'nota1_nota', 'nota2_nota', 'promedio_nota']
-        fields = '__all__'
+        fields = ['alumnos_id_alu', 'alumnosNotasMatricula', 'alumnosNotasCurso', 'nota1_nota', 'nota2_nota',
+                  'promedio_nota']
+        # fields = '__all__'
 
 
 class AlumnosNotasSerializer(serializers.ModelSerializer):
@@ -59,6 +70,14 @@ class AlumnosNotasSerializer(serializers.ModelSerializer):
         fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosNotasAlumnos']
 
 
+class AlumnosAsistenciaSerializer(serializers.ModelSerializer):
+    alumnosAsistenciaAlumnos = DetalleAlumnosAsistenciaSerializer(many=True, read_only=True)
+    class Meta:
+        model = Alumnos
+        #fields = '__all__'
+        fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosAsistenciaAlumnos']
+
+
 # *********************************************************************************#
 # *********************************************************************************#
 
@@ -67,13 +86,6 @@ class MateriaSerializer(serializers.ModelSerializer):
         model = Materia
         fields = '__all__'
         # fields = ['id_mate', 'nom_mate']
-
-
-class UsuariosSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuarios
-        fields = '__all__'
-        # fields = ['id_usu', 'ape_usu', 'nom_usu']
 
 
 # *********************************************************************************#
@@ -94,7 +106,7 @@ class DocentesSerializer(serializers.ModelSerializer):
 #         fields = ['nom_docemate']
 
 
-# *********************************************************************************#
+# ***********************************************************************************#
 # ******************************* LIBRERIA ******************************************#
 class LibreriaSerializer(serializers.ModelSerializer):
     nom_libremate = serializers.CharField(source='materia_id_mate.nom_mate')
@@ -103,7 +115,7 @@ class LibreriaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Libreria
-        fields = ['codigo_libre', 'nom_libremate', 'titulo_libre', 'autor_libre', 'editorial_libre',
+        fields = ['id_libre', 'codigo_libre', 'nom_libremate', 'titulo_libre', 'autor_libre', 'editorial_libre',
                   'edicion_libre', 'isbn_libre', 'stock_libre', 'precio_libre', 'barra_libre', 'disponible_libre',
                   'imagen_libre', 'detalle_libre', 'recomendado_libre']
         # fields = '__all__'
@@ -140,3 +152,12 @@ class MateriaLibreriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Materia
         fields = ['id_mate', 'nom_mate', 'libreriaMateria']
+
+# ***********************************************************************************#
+# ******************************* USUARIO *******************************************#
+
+class UsuariosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuarios
+        fields = '__all__'
+        # fields = ['id_usu', 'ape_usu', 'nom_usu']

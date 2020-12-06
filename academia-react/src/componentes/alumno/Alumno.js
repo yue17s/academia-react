@@ -20,6 +20,7 @@ const Alumno = ({ history }) => {
   const [formulario, setFormulario] = useState({
     codalum: "",
     password: "",
+    tiposesion: "",
   });
 
   const handleChange = (e) => {
@@ -46,7 +47,8 @@ const Alumno = ({ history }) => {
     e.preventDefault();
     getAlumno(formulario).then((rpta) => {
       if (!rpta.detail) {
-        console.log("EXITO!!!");
+        console.log(rpta);
+        console.log("EXITO YEAH!!!");
         iniciarSesionState(rpta);
         history.push("/Alumno_sesion");
       } else {

@@ -21,9 +21,10 @@ urlpatterns = [
     #**********************************************************************************#
     path('Detail_Alumno/(<codigo_alu>)/(<pass_alu>)/', views.DetalleAlumnosCodigoViewset.as_view()),  # GET --> http://127.0.0.1:8000/Detail_Alumno/<codigo_alu>/
     path('Create_List_Alumnos/', views.AlumnosCreateListViewset.as_view()),  # POST --> http://127.0.0.1:8000/Create_List_Alumnos/
-    #path('Detail_Alumno/', views.AlumnoDetailViewset.as_view()),  # POST --> http://127.0.0.1:8000/Detail_Alumnos/
     path('Crear_Alumno/', views.RegistrarAlumnos.as_view()),  # POST --> http://127.0.0.1:8000/Create_One_Alumno/
-    path('Detail_Alumno_Notas/', views.DetalleAlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/Detail_Alumno_Notas/
+    path('Detail_Alumno_Asistencia/', views.DetalleAlumnosAsistenciaViewset.as_view()), # GET --> http://127.0.0.1:8000/Detail_Alumno_Asistencia/
+    path('List_Alumno_Asistencia/', views.AlumnosAsistenciaViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Asistencia/
+    path('Detail_Alumno_Notas/', views.DetalleAlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Asistencia
     path('List_Alumno_Notas/', views.AlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Notas/
     #**********************************************************************************#
     path('Create_List_Materia/', views.MateriaCreateListViewset.as_view()),  # GET --> http://127.0.0.1:8000/Create_List_Materia/
@@ -36,6 +37,7 @@ urlpatterns = [
     path('Update_Docentes/<id_doce>/', views.DocentesUpdatePkViewset.as_view()),  # PUT --> http://127.0.0.1:8000/Update_Docentes/<id_doce>/
     path('Detail_Docentes/<id_doce>/', views.DocentesDetailPkViewset.as_view()),  # GET --> http://127.0.0.1:8000/Detail_Docentes/<id_doce>/
     #**********************************************************************************#
+    path('Detail_Usuario/(<email_usu>)/(<pass_usu>)/', views.DetalleUsuariosCodigoViewset.as_view()), # GET --> http://127.0.0.1:8000/Detail_Usuario/(<email_usu>)/(<pass_usu>)/
     path('Crear_Usuario/', views.RegistrarUsuarios.as_view()),  # POST --> http://127.0.0.1:8000/Crear_Usuario/
     path('List_All_Usuarios/', views.UsuariosAllViewset.as_view()),  # GET --> http://127.0.0.1:8000/List_All_Usuarios/
     path('Create_User/', views.RegisterUser.as_view()),  # POST --> http://127.0.0.1:8000/Create_User/
