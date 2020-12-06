@@ -9,7 +9,8 @@ import { URL_BACKEND, URL_BACKEND_HERO } from "./variables";
 //return response;
 //};
 
-export const getMaterias = async () => {
+//************************** DOCENTES *********************************************/
+export const geteMaterias = async () => {
   const peticion = await fetch(`${URL_BACKEND_HERO}/List_All_Materia/`, ['GET']);
   const response = await peticion.json();
   return response;

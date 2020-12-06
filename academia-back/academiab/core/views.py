@@ -7,14 +7,14 @@ from rest_framework.views import APIView
 from .serializers import AlumnosSerializer, AlumnosLoginSerializer, DocentesSerializer, MateriaSerializer, \
     UsuariosSerializer, \
     LibreriaSerializer, \
-    LibrePediLibrePediDetaSerializer, UserSerializer
+    LibrePediLibrePediDetaSerializer, UserSerializer, MateriaLibreriaSerializer
 from rest_framework import generics
 from rest_framework import viewsets  # METODOS para Listas
 import json
 from .models import Alumnos, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, LibreriaPedidoDetalle
 from .models import User  # LOGIN
 from rest_framework.authtoken.models import Token
-
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 # GENERICS y sus Metodos
 # Listar (ListAPIView)
@@ -99,12 +99,49 @@ class RegistrarAlumnos(generics.CreateAPIView):
 
 # class CallAlumnoView(generics.RetrieveAPIView)
 
-class DetalleAlumnosCodigoViewset(generics.RetrieveAPIView):
+class MultipleFieldLookupMixin:
+    def get_object(self):
+        queryset = self.get_queryset()  # Obtener el conjunto de consultas base
+        queryset = self.filter_queryset(queryset)  # Aplicar cualquier filtro backends
+        filter = {}
+        for field in self.lookup_fields:
+            if self.kwargs[field]:  # Ignore los campos vacíos.
+                filter[field] = self.kwargs[field]
+        obj = get_object_or_404(queryset, **filter)  # Busque el objeto
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+
+class DetalleAlumnosCodigoViewset(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     queryset = Alumnos.objects.all()
     serializer_class = AlumnosSerializer
-    lookup_field = 'codigo_alu'
-    # lookup_fields = ['codigo_alu', 'pass_alu']
+    lookup_fields = ('codigo_alu', 'pass_alu')
+    #lookup_fields = 'codigo_alu'
     permission_classes = (AllowAny,)
+
+# class MultipleFieldLookupMixin(object):
+#     def get_object(self):
+#         queryset = self.get_queryset()  # Get the base queryset
+#         queryset = self.filter_queryset(queryset)  # Apply any filter backends
+#         filter = {}
+#         for field in self.lookup_fields:
+#             filter[field] = self.kwargs[self.lookup_field]
+#         q = reduce(operator.or_, (Q(x) for x in filter.items()))
+#         return get_object_or_404(queryset, q)
+#
+#
+# class DetalleAlumnosCodigoViewset(MultipleFieldLookupMixin, viewsets.ModelViewSet):
+#     queryset = Alumnos.objects.all()
+#     serializer_class = AlumnosSerializer
+#     lookup_fields = ('codigo_alu', 'pass_alu')
+
+
+# class DetalleAlumnosCodigoViewset(generics.RetrieveAPIView):
+#     queryset = Alumnos.objects.all()
+#     serializer_class = AlumnosSerializer
+#     lookup_field = 'codigo_alu'
+#     # lookup_fields = ['codigo_alu', 'pass_alu']
+#     permission_classes = (AllowAny,)
 
 
 # ************************************************************************#
@@ -127,6 +164,19 @@ class MateriaCreateListViewset(generics.ListCreateAPIView):
 class MateriaAllViewset(generics.ListAPIView):
     queryset = Materia.objects.all()
     serializer_class = MateriaSerializer
+    permission_classes = (AllowAny,)
+
+
+############################################################
+class MateriaFullViewset(viewsets.ModelViewSet):
+    queryset = Materia.objects.all()
+    serializer_class = MateriaSerializer
+    permission_classes = (AllowAny,)
+
+
+class MateriaLibreriaViewset(generics.ListAPIView):
+    queryset = Materia.objects.all()
+    serializer_class = MateriaLibreriaSerializer
     permission_classes = (AllowAny,)
 
 
@@ -161,13 +211,6 @@ class DocentesDetailPkViewset(generics.RetrieveAPIView):
     queryset = Docentes.objects.all()
     serializer_class = DocentesSerializer
     lookup_field = 'id_doce'
-    permission_classes = (AllowAny,)
-
-
-##################################################################
-class MateriaFullViewset(viewsets.ModelViewSet):
-    queryset = Materia.objects.all()
-    serializer_class = MateriaSerializer
     permission_classes = (AllowAny,)
 
 

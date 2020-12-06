@@ -51,7 +51,7 @@ class Person(models.Model):
 
 class Materia(models.Model):
     id_mate = models.AutoField(primary_key=True)
-    nom_mate = models.CharField(max_length=50, help_text='Nombre de la materia')
+    nom_mate = models.CharField("Nombre de la Materia", max_length=50, help_text='Nombre de la materia')
 
     def __str__(self):
         return self.nom_mate
@@ -94,11 +94,12 @@ class Alumnos(models.Model):
 
 class AlumnosAsistencia(models.Model):
     id_asis = models.AutoField(primary_key=True)
-    alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu', related_name="AlumnosAsistenciaAlumnos")
+    alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu',
+                                       related_name="AlumnosAsistenciaAlumnos")
     fecha_asis = models.DateField()
 
     def __str__(self):
-        return str(self.alumnos_id_alu)+ " - Fecha: " + str(self.fecha_asis)
+        return str(self.alumnos_id_alu) + " - Fecha: " + str(self.fecha_asis)
 
     class Meta:
         managed = False
@@ -280,21 +281,22 @@ class Horario(models.Model):
 # ************************************* LIBRERIA ****************************************#
 class Libreria(models.Model):
     id_libre = models.AutoField(primary_key=True)
-    codigo_libre = models.CharField(max_length=6)
     materia_id_mate = models.ForeignKey('Materia', models.DO_NOTHING, db_column='materia_id_mate',
-                                        related_name="LibreriaMateria")
-    titulo_libre = models.CharField(max_length=100)
-    autor_libre = models.CharField(max_length=100)
-    editorial_libre = models.CharField(max_length=100)
-    edicion_libre = models.DecimalField(max_digits=4, decimal_places=0)
-    isbn_libre = models.CharField(max_length=12)
-    stock_libre = models.DecimalField(max_digits=3, decimal_places=0)
-    precio_libre = models.DecimalField(max_digits=6, decimal_places=2)
-    barra_libre = models.DecimalField(max_digits=13, decimal_places=0)
-    disponible_libre = models.BooleanField(default=True)
+                                        related_name="libreriaMateria")
+    codigo_libre = models.CharField("Codigo", max_length=6)
+    titulo_libre = models.CharField("Titulo", max_length=100)
+    autor_libre = models.CharField("Autor", max_length=100)
+    editorial_libre = models.CharField("Editorial", max_length=100)
+    edicion_libre = models.DecimalField("Edicion", max_digits=4, decimal_places=0, help_text="Ej.: 2010")
+    isbn_libre = models.CharField("ISBN", max_length=12, help_text="12 Digitos")
+    stock_libre = models.DecimalField("Stock", max_digits=3, decimal_places=0)
+    precio_libre = models.DecimalField("Precio", max_digits=6, decimal_places=2)
+    barra_libre = models.DecimalField("Codigo de Barras", max_digits=13, decimal_places=0, help_text="13 digitos")
+    disponible_libre = models.BooleanField("Disponible?", default=True)
     # imagen_libre = models.ImageField("Imagen Libro", upload_to='img/libreria/', blank=True, null=True)
-    imagen_libre = models.CharField(max_length=350)
+    imagen_libre = models.CharField("Foto", max_length=350)
     detalle_libre = models.TextField("Detalle del Libro")
+    recomendado_libre = models.BooleanField("Recomendado?", default=True)
 
     def __str__(self):
         return self.titulo_libre + " - " + self.codigo_libre

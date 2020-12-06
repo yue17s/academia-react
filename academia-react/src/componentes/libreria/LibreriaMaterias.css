@@ -1,0 +1,7 @@
+.materia__libro {
+  cursor: pointer;
+  transition: 1s;
+}
+.materias__libros:hover option {
+    cursor: pointer;
+}

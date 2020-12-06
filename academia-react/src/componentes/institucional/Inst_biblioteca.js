@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faSearch } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import Bibliotecas from "./Bibliotecas";
-import { getMaterias } from "../../services/services";
+import { geteMaterias } from "../../services/services";
 
 const Inst_biblioteca = () => {
   const [bibliotecaSeleccionado, setBibliotecaSeleccionada] = useState(null);
   const [materias, setMaterias] = useState([]);
   useEffect(() => {
-    getMaterias().then((arregloMaterias) => {
+    geteMaterias().then((arregloMaterias) => {
       setMaterias(arregloMaterias.data);
     });
   }, []);

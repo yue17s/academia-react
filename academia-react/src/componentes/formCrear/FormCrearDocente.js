@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getMaterias, postDocente } from "../../services/services";
+import { geteMaterias, postDocente } from "../../services/services";
 import Swal from "sweetalert2";
 
 const initialState = {
@@ -27,7 +27,7 @@ const FormCrearDocente = () => {
     imagen_doce,
   } = form;
   useEffect(() => {
-    getMaterias().then((arregloMaterias) => {
+    geteMaterias().then((arregloMaterias) => {
       setMaterias(arregloMaterias.data);
     });
   }, []);

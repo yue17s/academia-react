@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getMaterias } from "../../services/services";
+import { geteMaterias } from "../../services/services";
 
 const DocenteMaterias = () => {
   const [materias, setMaterias] = useState([]);
 
   const traerMaterias = async () => {
-    const data = await getMaterias();
+    const data = await geteMaterias();
     setMaterias(data);
   };
   useEffect(() => {

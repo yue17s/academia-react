@@ -4,3 +4,6 @@
 - npm install --save react-elastic-carousel
 #### https://styled-components.com/
 - npm install --save styled-components
+## Instalar Libreria de PDF ara REACT
+### https://react-pdf.org/
+- npm install @react-pdf/renderer --save

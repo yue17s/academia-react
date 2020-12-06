@@ -5,13 +5,13 @@ import imgs from "../imgs";
 import Docentes from "./Docentes";
 import DocenteMaterias from "./DocenteMaterias";
 import DocenteDetalle from "./DocenteDetalle";
-import { getMaterias } from "../../services/services";
+import { geteMaterias } from "../../services/services";
 
 const Inst_docentes = () => {
   const [docenteSeleccionado, setDocenteSeleccionado] = useState(null);
   const [materias, setMaterias] = useState([]);
   useEffect(() => {
-    getMaterias().then((arregloMaterias) => {
+    geteMaterias().then((arregloMaterias) => {
       setMaterias(arregloMaterias.data);
     });
   }, []);

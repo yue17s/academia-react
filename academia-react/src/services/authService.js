@@ -2,7 +2,7 @@ import { URL_BACKEND_HERO } from "./variables";
 
 export const getAlumno = async (objAlum) => {
   const peticion = await fetch(
-    `${URL_BACKEND_HERO}/Detail_Alumno/${objAlum.codalum}/`,
+    `${URL_BACKEND_HERO}/Detail_Alumno/(${objAlum.codalum})/(${objAlum.passalu})/`,
     {
       method: "GET",
       headers: { "Content-Type": "application/json" },

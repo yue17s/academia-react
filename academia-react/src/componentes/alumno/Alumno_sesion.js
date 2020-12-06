@@ -10,7 +10,6 @@ import imgs from "../imgs";
 import AuthContext from "../../context/auth/authContext";
 import { withRouter } from "react-router-dom";
 
-
 const Alumno_sesion = ({ history }) => {
   const {
     autenticado,
@@ -172,7 +171,6 @@ const Alumno_sesion = ({ history }) => {
                         </tbody>
                       </table>
                     </div>
-                    
                   </div>
                 </div>
               </div>
