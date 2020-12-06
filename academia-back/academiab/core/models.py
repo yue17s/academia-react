@@ -96,35 +96,38 @@ class AlumnosAsistencia(models.Model):
     id_asis = models.AutoField(primary_key=True)
     alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu',
                                        related_name="AlumnosAsistenciaAlumnos")
-    fecha_asis = models.DateField()
+    fecha_asis = models.DateField("Fecha que asistio")
 
     def __str__(self):
-        return str(self.alumnos_id_alu) + " - Fecha: " + str(self.fecha_asis)
+        return str(self.alumnos_id_alu) + " | FECHA: " + str(self.fecha_asis)
 
     class Meta:
         managed = False
         db_table = 'alumnos_asistencia'
-        verbose_name_plural = "alumno - asistencias"
+        verbose_name_plural = "alumnos - asistencias"
         verbose_name = 'Alumno - asistencia'
         ordering = ['alumnos_id_alu']
 
 
 class AlumnosNotas(models.Model):
     id_nota = models.AutoField(primary_key=True)
-    alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu')
+    alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu',
+                                       related_name="alumnosNotasAlumnos")
     matricula_id_mat = models.ForeignKey('Matricula', models.DO_NOTHING, db_column='matricula_id_mat')
     cursos_id_curso = models.ForeignKey('Cursos', models.DO_NOTHING, db_column='cursos_id_curso')
-    nota1_nota = models.DecimalField(max_digits=4, decimal_places=2)
-    nota2_nota = models.DecimalField(max_digits=4, decimal_places=2)
-    promedio_nota = models.DecimalField(max_digits=4, decimal_places=2)
+    nota1_nota = models.DecimalField("Nota 1", max_digits=4, decimal_places=2, default=0,
+                                     help_text='Ej. 10.30 -- ( 0 a 20)')
+    nota2_nota = models.DecimalField("Nota 2", max_digits=4, decimal_places=2, default=0,
+                                     help_text='Ej. 10.30 -- ( 0 a 20)')
+    promedio_nota = models.DecimalField("Promedio", max_digits=4, decimal_places=2)
 
     def __str__(self):
-        return self.alumnos_id_alu
+        return str(self.alumnos_id_alu) + ' | ' + str(self.cursos_id_curso)
 
     class Meta:
         managed = False
         db_table = 'alumnos_notas'
-        verbose_name_plural = "alumno - notas"
+        verbose_name_plural = "alumnos - notas"
         verbose_name = 'Alumno - nota'
         ordering = ['alumnos_id_alu']
 
@@ -367,9 +370,9 @@ class Facturacion(models.Model):
 # ***************************************************************************************#
 class Matricula(models.Model):
     id_mat = models.AutoField(primary_key=True)
-    codigo_mat = models.CharField(max_length=5)
-    anio_mat = models.DecimalField(max_digits=4, decimal_places=0)
-    detalle_mat = models.TextField()
+    codigo_mat = models.CharField("Codigo de Matricula", max_length=5)
+    anio_mat = models.IntegerField("Año", default="2020", help_text="Ej. 2020")
+    detalle_mat = models.TextField("Detalle")
 
     def __str__(self):
         return self.codigo_mat

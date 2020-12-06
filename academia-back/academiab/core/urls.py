@@ -20,10 +20,11 @@ urlpatterns = [
     path('', index, name='index'),
     #**********************************************************************************#
     path('Detail_Alumno/(<codigo_alu>)/(<pass_alu>)/', views.DetalleAlumnosCodigoViewset.as_view()),  # GET --> http://127.0.0.1:8000/Detail_Alumno/<codigo_alu>/
-    #path('Detail_Alumno/<pass_alu>/', views.DetalleAlumnosCodigoViewset.as_view()),
     path('Create_List_Alumnos/', views.AlumnosCreateListViewset.as_view()),  # POST --> http://127.0.0.1:8000/Create_List_Alumnos/
     #path('Detail_Alumno/', views.AlumnoDetailViewset.as_view()),  # POST --> http://127.0.0.1:8000/Detail_Alumnos/
     path('Crear_Alumno/', views.RegistrarAlumnos.as_view()),  # POST --> http://127.0.0.1:8000/Create_One_Alumno/
+    path('Detail_Alumno_Notas/', views.DetalleAlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/Detail_Alumno_Notas/
+    path('List_Alumno_Notas/', views.AlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Notas/
     #**********************************************************************************#
     path('Create_List_Materia/', views.MateriaCreateListViewset.as_view()),  # GET --> http://127.0.0.1:8000/Create_List_Materia/
     path('List_All_Materia/', views.MateriaAllViewset.as_view()),  # GET --> http://127.0.0.1:8000/List_All_Materia/

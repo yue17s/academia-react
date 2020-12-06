@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Alumnos, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, LibreriaPedidoDetalle
+from .models import Alumnos, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, LibreriaPedidoDetalle
 from .models import User, Person  # LOGIN
 
 
@@ -27,6 +27,7 @@ class UserSerializer(serializers.ModelSerializer):  # PADRE
 
 
 # *********************************************************************************#
+# *********************************************************************************#
 class AlumnosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alumnos
@@ -39,6 +40,26 @@ class AlumnosLoginSerializer(serializers.ModelSerializer):
         fields = ['codigo_alu', 'pass_alu']
 
 
+class DetalleAlumnosNotasSerializer(serializers.ModelSerializer):
+    # nom_docemate = serializers.CharField(source='materia_id_mate.nom_mate')
+
+    class Meta:
+        model = AlumnosNotas
+        # fields = ['alumnos_id_alu', 'matricula_id_mat', 'cursos_id_curso', 'nota1_nota', 'nota2_nota', 'promedio_nota']
+        fields = '__all__'
+
+
+class AlumnosNotasSerializer(serializers.ModelSerializer):
+    alumnosNotasAlumnos = DetalleAlumnosNotasSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Alumnos
+        # fields = ['alumnos_id_alu', 'matricula_id_mat', 'cursos_id_curso', 'nota1_nota', 'nota2_nota', 'promedio_nota']
+        # fields = '__all__'
+        fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosNotasAlumnos']
+
+
+# *********************************************************************************#
 # *********************************************************************************#
 
 class MateriaSerializer(serializers.ModelSerializer):
@@ -77,7 +98,8 @@ class DocentesSerializer(serializers.ModelSerializer):
 # ******************************* LIBRERIA ******************************************#
 class LibreriaSerializer(serializers.ModelSerializer):
     nom_libremate = serializers.CharField(source='materia_id_mate.nom_mate')
-    #libreriaMateria = serializers.CharField(source='materia.nom_mate')
+
+    # libreriaMateria = serializers.CharField(source='materia.nom_mate')
 
     class Meta:
         model = Libreria
