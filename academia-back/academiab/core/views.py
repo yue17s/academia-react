@@ -11,7 +11,8 @@ from .serializers import AlumnosSerializer, AlumnosAsistenciaSerializer, Alumnos
     MateriaSerializer, \
     UsuariosSerializer, \
     LibreriaSerializer, \
-    LibrePediLibrePediDetaSerializer, UserSerializer, UsuariosSerializer, MateriaLibreriaSerializer
+    LibrePediLibrePediDetaSerializer, LibrePediRecomendadosDetaSerializer, UserSerializer, UsuariosSerializer, \
+    MateriaLibreriaSerializer
 from rest_framework import generics
 from rest_framework import viewsets  # METODOS para Listas
 import json
@@ -292,6 +293,20 @@ class LibrePediLibrePediDetaViewSet(generics.ListAPIView):
     queryset = LibreriaPedido.objects.all()
     serializer_class = LibrePediLibrePediDetaSerializer
     permission_classes = (AllowAny,)
+
+
+class LibrePediRecomendadosDetaViewSet(generics.ListAPIView):
+    queryset = Libreria.objects.all()
+    serializer_class = LibrePediRecomendadosDetaSerializer
+    permission_classes = (AllowAny,)
+
+    # def recomendados(self):
+    if Libreria.recomendado_libre != 'True':
+        data = {'detail': 'NO EXISTEN RECOMENDADOS'}
+    # else:
+    #     data = {'detail': 'FELICIDADES, SI EXISTEN RECOMENDADOS - '}
+    # reply = json.dumps(data)
+# return HttpResponse(reply, content_type='application/json')
 
 
 ##################################################################

@@ -43,6 +43,7 @@ urlpatterns = [
     path('Create_User/', views.RegisterUser.as_view()),  # POST --> http://127.0.0.1:8000/Create_User/
     path('Login/', views.LoginView.as_view()),  # POST --> http://127.0.0.1:8000/Login/
     #**********************************************************************************#
+    path('List_Libre_Recomendados/', views.LibrePediRecomendadosDetaViewSet.as_view()),
     path('List_LibrePedi_LibrePediDeta/', views.LibrePediLibrePediDetaViewSet.as_view()),  # POST --> http://127.0.0.1:8000/List_LibrePedi_LibrePediDeta/
 
     # ENDPOINT para el API RESTFULL

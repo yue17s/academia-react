@@ -72,9 +72,10 @@ class AlumnosNotasSerializer(serializers.ModelSerializer):
 
 class AlumnosAsistenciaSerializer(serializers.ModelSerializer):
     alumnosAsistenciaAlumnos = DetalleAlumnosAsistenciaSerializer(many=True, read_only=True)
+
     class Meta:
         model = Alumnos
-        #fields = '__all__'
+        # fields = '__all__'
         fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosAsistenciaAlumnos']
 
 
@@ -141,17 +142,27 @@ class LibrePediLibrePediDetaSerializer(serializers.ModelSerializer):
     nom_usu = serializers.CharField(source='usuarios.nom_usu')
 
     class Meta:
-        model = LibreriaPedido
-        fields = ['nom_usu', 'codigo_lipe', 'fecha_lipe', 'entrego_lpd', 'LibreriaPedidoDetallePedido']  # PADRE
+        model = Libreria
+        fields = ['codigo_lipe', 'fecha_lipe', 'entrego_lpd']  # PADRE
 
 
-# *************************************************************************
+class LibrePediRecomendadosDetaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libreria
+        fields = ['id_libre', 'codigo_libre', 'nom_libremate', 'titulo_libre', 'autor_libre', 'editorial_libre',
+                   'edicion_libre', 'isbn_libre', 'stock_libre', 'precio_libre', 'barra_libre', 'disponible_libre',
+                   'imagen_libre', 'detalle_libre', 'recomendado_libre']
+
+        # *************************************************************************
+
+
 class MateriaLibreriaSerializer(serializers.ModelSerializer):
     libreriaMateria = LibreriaSerializer(many=True, read_only=True)
 
     class Meta:
         model = Materia
         fields = ['id_mate', 'nom_mate', 'libreriaMateria']
+
 
 # ***********************************************************************************#
 # ******************************* USUARIO *******************************************#

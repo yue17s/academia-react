@@ -1615,6 +1615,48 @@ textarea:hover {
 .carrito__left ul > li {
   cursor: auto;
 }
+.final__titu {
+  padding-left: 15px;
+  padding-right: 25px;
+}
+.final__depa {
+  display: flex;
+  padding: 30px 25px;
+  justify-content: space-between;
+  background-color: var(--color-pri-70);
+}
+.final__depa select {
+  outline: none;
+  border: none;
+  width: 32%;
+  height: 50px;
+  padding-left: 50px;
+}
+.final__despacho {
+  display: flex;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-gris-card);
+}
+.final__left {
+  background-color: var(--color-gris-card);
+}
+.final__left,
+.final__right {
+  width: 50%;
+}
+.final__left p,
+.final__right p {
+  padding: 0 25px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.final__left p:hover {
+  color: var(--color-sec);
+  
+}
+.final__mapa {
+  text-align: center;
+}
 /********************* 404 ***********************/
 .notfound {
   display: flex;
