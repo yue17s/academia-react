@@ -435,6 +435,16 @@ button:hover {
   padding-top: 100px;
   padding-bottom: 100px;
 }
+.institucion__datos {
+  display: flex;
+}
+.institucion_txt {
+  text-align: justify;
+  padding: 20px;
+}
+.institucion__img {
+  padding: 20px;
+}
 .institucional {
   display: flex;
   background: url("../img/main/fondo.png") no-repeat center/80%;

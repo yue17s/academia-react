@@ -22,8 +22,34 @@ const Inst_institucion = () => {
               <h6>Bienvenido a la ACADEMIA</h6>
             </div>
             <div className="institucion__complementario">
+              <div className="institucion__datos">
+                <div className="institucion_txt">
+                  <p>
+                    La Academia renueva su compromiso de brindar el más alto
+                    nivel académico y la mejor preparación pre universitaria
+                    actualizada a las exigencias de las universidades de nuestra
+                    región y del país. Nuestra propuesta integral basada en
+                    resultados y en brindar un servicio de calidad se desarrolla
+                    en beneficio de los miles de jóvenes que año tras año buscan
+                    su ingreso a un centro superior de estudios, nosotros en la
+                    Academia complementamos esta formación de manera continua
+                    con un alto estándar de exigencia que permite la interacción
+                    y preparación oportuna para asegurar su ingreso. En todo
+                    este tiempo hemos aportado un entorno de calidad educativa,
+                    y tenemos la satisfacción de ser recomendados por las
+                    generaciones de alumnos que han pasado por nuestras aulas y
+                    que hoy son grandes profesionales y excelentes personas que
+                    afrontan exitosamente los retos de la vida.
+                  </p>
+                </div>
+                <div className="institucion__img">
+                  <img src={imgs[23].imagen} />
+                </div>
+              </div>
               <div className="institucion__institucion">
-                DATOS DE LOS DIRECTORES
+                <p>
+                  <b>DATOS DE LOS DIRECTORES</b>
+                </p>
                 <ul>
                   <li>Director</li>
                   <li>Sub-director</li>
@@ -111,7 +137,19 @@ const Inst_institucion = () => {
           <div className="institucion contenedor">
             <div className="institucion__titulo">
               <h3>FORMAS DE PAGO</h3>
-              <h6>No se que poner Aquí</h6>
+              <h6>
+                {" "}
+                Recuerda que ahora tienes 2 opciones para realizar tu pago
+              </h6>
+              <p>
+                Puedes hacer tu pago desde tu matrícula web, con total seguridad
+                y rapidez, usando tus Tarjetas de Crédito o Débito Visa,
+                Mastercard y American Express. O puedes acudir con tu código a
+                cualquiera de los siguientes bancos o agentes: Scotiabank,
+                Interbank, BCP, BBVA Continental o Banbif. Y recuerda, no es
+                necesario que tengas una tarjeta de estos bancos, basta que
+                presentes tu código de pago.
+              </p>
             </div>
             <div className="institucion__complementario">
               <div className="institucion__institucion">

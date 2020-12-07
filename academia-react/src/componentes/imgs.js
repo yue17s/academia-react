@@ -21,7 +21,7 @@ import img404 from "./img/404/404.png";
 import imgAviso1 from "./img/avisos/acti_prox_01.jpg";
 import imgAviso2 from "./img/avisos/acti_prox_02.jpg";
 import imgAviso3 from "./img/avisos/acti_prox_03.jpg";
-
+import lgAcademia from "./img/institucion/logoAcademia.png";
 
 export default [
   { imagen: biblioteca, titulo: "Biblioteca" }, // 00
@@ -47,4 +47,5 @@ export default [
   { imagen: imgAviso1, titulo: "Aviso 01" }, // 20
   { imagen: imgAviso2, titulo: "Aviso 02" }, // 21
   { imagen: imgAviso3, titulo: "Aviso 03" }, // 22
+  { imagen: lgAcademia, titulo: "Logo Academia PNG" }, // 23
 ];
