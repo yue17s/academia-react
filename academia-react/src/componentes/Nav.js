@@ -14,6 +14,7 @@ import {
   faBookOpen,
   faAlignJustify,
   faUserLock,
+  faBrain,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/style.css";
 import AuthContext from "../context/auth/authContext";
@@ -69,11 +70,9 @@ const Nav = ({ history }) => {
               <div className="iniciar">
                 {cargando ? (
                   <span>Cargando...</span>
-                ) : (autenticado ? (
+                ) : autenticado ? (
                   <div>
-                    <span className="session_ape">
-                      Bienvenido |
-                    </span>{" "}
+                    <span className="session_ape">Bienvenido |</span>{" "}
                     <button
                       onClick={() => {
                         cerrarSesion();
@@ -97,7 +96,7 @@ const Nav = ({ history }) => {
                     </i>{" "}
                     Iniciar sesión
                   </button>
-                ))}
+                )}
               </div>
             </div>
             <div className="linea-right"></div>
@@ -119,7 +118,12 @@ const Nav = ({ history }) => {
         <div className="contenedor">
           <div className="nav__barra">
             <div className="logo">
-              <a href="./">ACADEMIA</a>
+              <a href="./">
+                <i>
+                  <FontAwesomeIcon icon={faBrain} />
+                </i>{" "}
+                ACADEMIA
+              </a>
             </div>
             <div className="enlaces">
               <ul>

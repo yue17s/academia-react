@@ -437,6 +437,7 @@ button:hover {
 }
 .institucional {
   display: flex;
+  background: url("../img/main/fondo.png") no-repeat center/80%;
 }
 .inst__contenido {
   flex: 1;
@@ -467,7 +468,7 @@ button:hover {
   font-weight: bold;
   text-transform: uppercase;
   transform: translateY(-15px);
-  transition: all 0.4s ease-out;
+  transition: all 0.25s ease-out;
 }
 .inst__top .titu span:hover {
   color: var(--color-pri-70);
@@ -475,6 +476,13 @@ button:hover {
   transform: translateY(-15px);
   transition: all 2.5s ease;
   cursor: pointer;
+}
+.inst__top .titu span a {
+  transition: all 0.25s ease-out;
+}
+.inst__top .titu span:hover a {
+  color: var(--color-sec);
+  transition: all 0.25s ease-out;
 }
 .inst__botton {
   color: var(--font-color);
@@ -559,6 +567,9 @@ textarea:hover {
   font-weight: bold;
   text-transform: uppercase;
 }
+.vision__txt .number {
+  color: var(--color-sec);
+}
 .vision__txt a {
   color: #ffffff;
 }
@@ -626,6 +637,9 @@ textarea:hover {
   font-weight: 500;
 }
 /*********************************/
+.tramites {
+  background: url("../img/main/fondo2.png") no-repeat center/80%;
+}
 .tramites__tramites {
   display: flex;
 }

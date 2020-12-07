@@ -15,7 +15,7 @@ const Header = () => {
                 <br />
                 Universitaria
               </h1>
-              <h4>Avanzando a un mejor futuro.</h4>
+              <h4>Alcanza tu futuro - HOY -</h4>
             </div>
           </div>
           <div className="ban__leftbotton"></div>
@@ -32,7 +32,7 @@ const Header = () => {
               <p>10K ALUMNOS</p>
             </div>
             <div className="ban__info">
-              <p>EXCELENCIA</p>
+              <p>!00% EXPERIENCIA - CALIDAD - EXCELENCIA</p>
             </div>
           </div>
         </div>
