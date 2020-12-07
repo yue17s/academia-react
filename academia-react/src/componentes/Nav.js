@@ -72,7 +72,7 @@ const Nav = ({ history }) => {
                   <span>Cargando...</span>
                 ) : autenticado ? (
                   <div>
-                    <span className="session_ape">Bienvenido |</span>{" "}
+                    <span className="session_ape">Bienvenido { ape_alu } |</span>{" "}
                     <button
                       onClick={() => {
                         cerrarSesion();

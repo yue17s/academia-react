@@ -1,12 +1,56 @@
 import React, { useContext } from "react";
 import LibreriaContext from "../../context/libreria/libreriaContext";
+import AuthContext from "../../context/auth/authContext";
+import { withRouter } from "react-router-dom"; // recibe las propiedades del enrutamiento (goLogin)
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faShoppingCart,
+  faCashRegister,
+} from "@fortawesome/free-solid-svg-icons";
 
-const LibreriaCarrito = () => {
+const LibreriaCarrito = ({ history }) => {
   const { carrito } = useContext(LibreriaContext);
+
+  const {
+    autenticado,
+    ape_alu,
+    ape_usu,
+    tiposesion,
+    cerrarSesion,
+    cargando,
+  } = useContext(AuthContext);
+  const goCarrito = () => history.push("/Carrito");
+  const goSesion = () => history.push("/Sesion");
 
   return (
     <>
       <div className="libre__carrito__right">
+        <div className="carrito__finalizar">
+          {autenticado ? (
+            <button
+              onClick={() => {
+                goCarrito();
+              }}
+            >
+              <i>
+                <FontAwesomeIcon icon={faCashRegister} />
+              </i>{" "}
+              Pasar por caja
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                goCarrito();
+              }}
+            >
+              <i>
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </i>{" "}
+              Finalizar Compra
+            </button>
+          )}
+        </div>
         <div className="carrito__final">
           <p>
             Total de articulos: <b>10</b>{" "}
@@ -49,4 +93,4 @@ const LibreriaCarrito = () => {
   );
 };
 
-export default LibreriaCarrito;
+export default withRouter(LibreriaCarrito);
