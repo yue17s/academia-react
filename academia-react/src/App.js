@@ -22,6 +22,7 @@ import Footer from "./componentes/Footer";
 import AuthState from "./context/auth/authState";
 import AppM from "./componentes/alumno/AppM"; // del PDF
 import LibreriaState from "./context/libreria/libreriaState";
+import CarritoFinal from "./componentes/libreria/Carrito_final";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Switch>
             <Route exact path="/Sesion" component={Sesion} />
             <Route exact path="/Sesion_nuevo" component={SesionNuevo} />
+            <Route exact path="/CarritoFinal" component={CarritoFinal} />
             <Route exact path="/Carrito" component={Carrito} />
             <Route exact path="/Inst_institucion" component={InstInstitucion} />
             <Route exact path="/Inst_tramites" component={InstTramites} />

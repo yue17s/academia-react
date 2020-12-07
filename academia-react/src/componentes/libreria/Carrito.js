@@ -1,9 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../context/auth/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCashRegister, faPrint } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
+import { withRouter } from "react-router-dom"; // recibe las propiedades del enrutamiento (goLogin)
 
-const Carrito = () => {
+const Carrito = ({ history }) => {
+  const {
+    autenticado,
+    ape_alu,
+    ape_usu,
+    tiposesion,
+    cerrarSesion,
+    cargando,
+  } = useContext(AuthContext);
+  const goSesion = () => history.push("/Sesion");
+  const goCarritoFinal = () => history.push("/CarritoFinal");
   return (
     <>
       <header>
@@ -102,12 +114,28 @@ const Carrito = () => {
                     </tr>
                   </tbody>
                 </table>
-                <button>
-                  <i>
-                    <FontAwesomeIcon icon={faCashRegister} />
-                  </i>{" "}
-                  Pasar por caja
-                </button>
+                {autenticado ? (
+                  <button  className="btn-rojo"
+                  onClick={() => {
+                    goCarritoFinal();
+                  }}>
+                    <i>
+                      <FontAwesomeIcon icon={faCashRegister} />
+                    </i>{" "}
+                    Pasar por caja
+                  </button>
+                ) : (
+                  <button  className="btn-rojo"
+                  onClick={() => {
+                    goSesion();
+                  }}>
+                    <i>
+                      <FontAwesomeIcon icon={faCashRegister} />
+                    </i>{" "}
+                    Pasar por caja
+                  </button>
+                )}
+
                 <button>
                   <i>
                     <FontAwesomeIcon icon={faPrint} />
@@ -123,4 +151,4 @@ const Carrito = () => {
   );
 };
 
-export default Carrito;
+export default withRouter(Carrito);

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import LibreriaContext from "../../context/libreria/libreriaContext";
 import AuthContext from "../../context/auth/authContext";
 import { withRouter } from "react-router-dom"; // recibe las propiedades del enrutamiento (goLogin)
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingCart,
@@ -21,7 +20,7 @@ const LibreriaCarrito = ({ history }) => {
     cargando,
   } = useContext(AuthContext);
   const goCarrito = () => history.push("/Carrito");
-  const goSesion = () => history.push("/Sesion");
+  const goCarritoFinal = () => history.push("/CarritoFinal");
 
   return (
     <>
@@ -29,8 +28,9 @@ const LibreriaCarrito = ({ history }) => {
         <div className="carrito__finalizar">
           {autenticado ? (
             <button
+              className="btn-rojo"
               onClick={() => {
-                goCarrito();
+                goCarritoFinal();
               }}
             >
               <i>
@@ -39,7 +39,7 @@ const LibreriaCarrito = ({ history }) => {
               Pasar por caja
             </button>
           ) : (
-            <button
+            <button className="btn-rojo"
               onClick={() => {
                 goCarrito();
               }}
@@ -47,7 +47,7 @@ const LibreriaCarrito = ({ history }) => {
               <i>
                 <FontAwesomeIcon icon={faShoppingCart} />
               </i>{" "}
-              Finalizar Compra
+              Finalizar compra
             </button>
           )}
         </div>
