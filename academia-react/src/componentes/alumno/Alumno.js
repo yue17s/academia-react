@@ -103,7 +103,7 @@ const Alumno = ({ history }) => {
                   <FontAwesomeIcon icon={faLock} />
                 </i>{" "}
                 <input
-                  type="passalu"
+                  type="password"
                   name="passalu"
                   value={formulario.passalu}
                   onChange={handleChange}

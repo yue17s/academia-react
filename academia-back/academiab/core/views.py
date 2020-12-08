@@ -296,17 +296,9 @@ class LibrePediLibrePediDetaViewSet(generics.ListAPIView):
 
 
 class LibrePediRecomendadosDetaViewSet(generics.ListAPIView):
-    queryset = Libreria.objects.all()
+    queryset = Libreria.objects.filter(recomendado_libre='True')
     serializer_class = LibrePediRecomendadosDetaSerializer
     permission_classes = (AllowAny,)
-
-    # def recomendados(self):
-    if Libreria.recomendado_libre != 'True':
-        data = {'detail': 'NO EXISTEN RECOMENDADOS'}
-    # else:
-    #     data = {'detail': 'FELICIDADES, SI EXISTEN RECOMENDADOS - '}
-    # reply = json.dumps(data)
-# return HttpResponse(reply, content_type='application/json')
 
 
 ##################################################################

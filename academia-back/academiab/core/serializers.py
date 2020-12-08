@@ -147,11 +147,13 @@ class LibrePediLibrePediDetaSerializer(serializers.ModelSerializer):
 
 
 class LibrePediRecomendadosDetaSerializer(serializers.ModelSerializer):
+    nom_libremate = serializers.CharField(source='materia_id_mate.nom_mate')
+
     class Meta:
         model = Libreria
         fields = ['id_libre', 'codigo_libre', 'nom_libremate', 'titulo_libre', 'autor_libre', 'editorial_libre',
-                   'edicion_libre', 'isbn_libre', 'stock_libre', 'precio_libre', 'barra_libre', 'disponible_libre',
-                   'imagen_libre', 'detalle_libre', 'recomendado_libre']
+                  'edicion_libre', 'isbn_libre', 'stock_libre', 'precio_libre', 'barra_libre', 'disponible_libre',
+                  'imagen_libre', 'detalle_libre', 'recomendado_libre']
 
         # *************************************************************************
 

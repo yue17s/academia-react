@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Carousel from "react-elastic-carousel";
 import Card from "./Card";
+import LibreriaContext from "../../context/libreria/libreriaContext";
+import { getLibrosRecomendados } from "../../services/librosServices";
 
 const Libreria_carousel = () => {
   const breakPoints = [
@@ -9,7 +11,16 @@ const Libreria_carousel = () => {
     { width: 768, itemsToShow: 3 },
     { width: 1200, itemsToShow: 4 },
   ];
+  const [libros, setLibros] = useState([]);
+  const traerLibros = async () => {
+    const data = await getLibrosRecomendados();
+    setLibros(data);
+  };
+  useEffect(() => {
+    traerLibros();
+  }, []);
 
+  const { globalMateria } = useContext(LibreriaContext);
   return (
     <>
       <section class="seccion claro">
@@ -22,16 +33,25 @@ const Libreria_carousel = () => {
             <div class="carousel">
               <div class="carousel__contenedor">
                 <Carousel breakPoints={breakPoints}>
-                  <Card number="1" />
-                  <Card number="2" />
-                  <Card number="3" />
-                  <Card number="4" />
-                  <Card number="5" />
-                  <Card number="6" />
-                  <Card number="7" />
-                  <Card number="8" />
+                  {globalMateria
+                    ? globalMateria.libreriaMateria.map((objLibreria) => {
+                        return (
+                          <Card number="1"
+                            key={objLibreria.id_libre}
+                            objLibreria={objLibreria}
+                          />
+                        );
+                      })
+                    : libros.map((objLibreria) => {
+                        return (
+                          <Card number="1"
+                            key={objLibreria.id_libre}
+                            objLibreria={objLibreria}
+                          />
+                        );
+                      })}
                 </Carousel>
-              </div>
+              </div> 
             </div>
           </div>
         </div>
