@@ -13,18 +13,18 @@ const Card = ({ number, objLibreria }) => {
         <div class="carousel__elemento">
           <div class="card">
             <div class="card__imagen">
-            <img src={objLibreria.imagen_libre} alt="" />
+              <img src={objLibreria.imagen_libre} alt="" />
             </div>
             <div class="card__nombre">
               <h6>
-                <a href="">Buenos Libros</a>
+                <a href="">{objLibreria.titulo_libre}</a>
               </h6>
             </div>
             <div class="card__subnombre">
-              <div class="sub">LITERATURA {number}</div>
+              <div class="sub">{objLibreria.nom_libremate}</div>
               <div class="cont">
                 <div class="precio">
-                  <span>S/ 20.00</span>
+                  <span>S/ {objLibreria.precio_libre}</span>
                 </div>
                 <div class="btn">
                   <button class="agregar">
