@@ -7,13 +7,12 @@ const authReducer = (stateActual, action) => {
       ...stateActual,
       ...action.data,
       autenticado: true,
-      cargando: false,
-      
+      //cargando: false,
     };
   }
   if (action.type === "CERRAR_SESION") {
     return {
-      cargando: false,
+      //cargando: false,
       autenticado: false,
       tiposesion: null,
       codigo_alu: null,
@@ -34,7 +33,7 @@ const authReducer = (stateActual, action) => {
 
 const AuthState = (props) => {
   const [state, dispatch] = useReducer(authReducer, {
-    cargando: true,
+    //cargando: true,
     autenticado: false,
     tiposesion: null,
 
@@ -79,7 +78,7 @@ const AuthState = (props) => {
   const iniciarSesionConLocalStorage = () => {
     const stringSesion = localStorage.getItem("sesion");
     if (stringSesion) {
-      const objSesion = JSON.stringify(stringSesion);
+      const objSesion = JSON.parse(stringSesion);
       console.log(objSesion);
       // setTimeout(() => {
       dispatch({
@@ -101,7 +100,7 @@ const AuthState = (props) => {
       value={{
         autenticado: state.autenticado,
         //cargando: state.cargando,
-
+        codigo_alu: state.codigo_alu,
         imagen_alu: state.imagen_alu,
         dni_alu: state.dni_alu,
         ape_alu: state.ape_alu,

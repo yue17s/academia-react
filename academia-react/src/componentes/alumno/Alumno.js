@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import { getAlumno, postLogin } from "../../services/authService";
-//import AuthState from "../../context/auth/authState";
+import AuthState from "../../context/auth/authState";
 import AuthContext from "../../context/auth/authContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";

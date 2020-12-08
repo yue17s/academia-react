@@ -14,6 +14,7 @@ const Alumno_sesion = ({ history }) => {
   const {
     autenticado,
     tiposesion,
+    codigo_alu,
     imagen_alu,
     dni_alu,
     ape_alu,
@@ -27,8 +28,8 @@ const Alumno_sesion = ({ history }) => {
   const { cerrarSesion } = useContext(AuthContext);
   const goLogin = () => history.push("/Alumno");
   const goMain = () => history.push("/");
-  const goNotas = () => history.push("/Notas");
-  const goAsistencia = () => history.push("/Asistencias");
+  //const goNotas = () => history.push("/Notas");
+  // const goAsistencia = () => history.push("/Asistencias");
 
   return (
     <>
@@ -58,21 +59,13 @@ const Alumno_sesion = ({ history }) => {
                       <img src={imagen_alu} alt="" />
                     </div>
                     <div className="alumnos__descarga">
-                      <button
-                        onClick={() => {
-                          goAsistencia();
-                        }}
-                      >
+                      <button>
                         <i>
                           <FontAwesomeIcon icon={faClipboard} />
                         </i>{" "}
                         VER ASISTENCIAS
                       </button>
-                      <button
-                        onClick={() => {
-                          goNotas();
-                        }}
-                      >
+                      <button>
                         <i>
                           <FontAwesomeIcon icon={faBookReader} />
                         </i>{" "}

@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 
 from .serializers import AlumnosSerializer, AlumnosAsistenciaSerializer, AlumnosNotasSerializer, \
     DetalleAlumnosAsistenciaSerializer, \
-    DetalleAlumnosNotasSerializer, \
+    DetalleAlumnosNotasSerializer, DetalleAlumnoNotaSerializer, \
     AlumnosLoginSerializer, DocentesSerializer, \
     MateriaSerializer, \
     UsuariosSerializer, \
@@ -144,6 +144,13 @@ class DetalleAlumnosNotasViewset(generics.ListCreateAPIView):
 class AlumnosNotasViewset(generics.ListAPIView):
     queryset = Alumnos.objects.all()
     serializer_class = AlumnosNotasSerializer
+    permission_classes = (AllowAny,)
+
+
+class DetalleAlumnoNotaViewset(generics.RetrieveAPIView):
+    queryset = Alumnos.objects.all()
+    serializer_class = AlumnosNotasSerializer
+    lookup_field = 'codigo_alu'
     permission_classes = (AllowAny,)
 
 

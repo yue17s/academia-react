@@ -24,8 +24,9 @@ urlpatterns = [
     path('Crear_Alumno/', views.RegistrarAlumnos.as_view()),  # POST --> http://127.0.0.1:8000/Create_One_Alumno/
     path('Detail_Alumno_Asistencia/', views.DetalleAlumnosAsistenciaViewset.as_view()), # GET --> http://127.0.0.1:8000/Detail_Alumno_Asistencia/
     path('List_Alumno_Asistencia/', views.AlumnosAsistenciaViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Asistencia/
-    path('Detail_Alumno_Notas/', views.DetalleAlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Asistencia
-    path('List_Alumno_Notas/', views.AlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Notas/
+    path('Detail_Alumnos_Notas/', views.DetalleAlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Asistencia
+    path('Detail_Alumno_Nota/<codigo_alu>/', views.DetalleAlumnoNotaViewset.as_view()),
+    path('List_Alumnos_Notas/', views.AlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumnos_Notas/
     #**********************************************************************************#
     path('Create_List_Materia/', views.MateriaCreateListViewset.as_view()),  # GET --> http://127.0.0.1:8000/Create_List_Materia/
     path('List_All_Materia/', views.MateriaAllViewset.as_view()),  # GET --> http://127.0.0.1:8000/List_All_Materia/
