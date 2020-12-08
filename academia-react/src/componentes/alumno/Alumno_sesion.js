@@ -27,6 +27,8 @@ const Alumno_sesion = ({ history }) => {
   const { cerrarSesion } = useContext(AuthContext);
   const goLogin = () => history.push("/Alumno");
   const goMain = () => history.push("/");
+  const goNotas = () => history.push("/Notas");
+  const goAsistencia = () => history.push("/Asistencias");
 
   return (
     <>
@@ -56,13 +58,21 @@ const Alumno_sesion = ({ history }) => {
                       <img src={imagen_alu} alt="" />
                     </div>
                     <div className="alumnos__descarga">
-                      <button>
+                      <button
+                        onClick={() => {
+                          goAsistencia();
+                        }}
+                      >
                         <i>
                           <FontAwesomeIcon icon={faClipboard} />
                         </i>{" "}
                         VER ASISTENCIAS
                       </button>
-                      <button>
+                      <button
+                        onClick={() => {
+                          goNotas();
+                        }}
+                      >
                         <i>
                           <FontAwesomeIcon icon={faBookReader} />
                         </i>{" "}

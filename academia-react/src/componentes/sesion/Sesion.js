@@ -26,9 +26,9 @@ const Sesion = ({ history }) => {
 
   const handleSubmit = (e) => {
     const MySwal = withReactContent(Swal);
-    if (formulario.emailusu == "") {
+    if (formulario.emailusu == "" || formulario.passusu == "") {
       MySwal.fire({
-        title: <p>Campo "Correo de usuario" en blanco</p>,
+        title: <p>¡Campo(s) vacios!<br />verifique</p>,
         footer: "Academia 2020",
       });
     }
@@ -41,9 +41,8 @@ const Sesion = ({ history }) => {
         history.push("/Libreria");
       } else {
         console.log("USUARIO INCORRECTO");
-
         MySwal.fire({
-          title: <p>Codigo de usuario incorrecto</p>,
+          title: <p>¡Email o contraseña incorrecto!<br />verifique</p>,
           footer: "Academia 2020",
         });
       }

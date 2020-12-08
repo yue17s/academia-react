@@ -1,0 +1,20 @@
+
+
+  
+  th {
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  
+  td {
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  tbody td {
+    text-align: center;
+  }
+  
+  tfoot th {
+    text-align: right;
+  }

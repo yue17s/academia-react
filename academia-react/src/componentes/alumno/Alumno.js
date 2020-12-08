@@ -10,16 +10,11 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const Alumno = ({ history }) => {
-  const goAlumnoSesion = () => {
-    //props.history.push("/Alumno_sesion");
-    getAlumno();
-  };
-
   const { iniciarSesionState } = useContext(AuthContext);
   //
   const [formulario, setFormulario] = useState({
     codalum: "",
-    password: "",
+    passalu: "",
     tiposesion: "",
   });
 
@@ -32,17 +27,17 @@ const Alumno = ({ history }) => {
 
   const handleSubmit = (e) => {
     const MySwal = withReactContent(Swal);
-    if (formulario.codalum == "") {
+    if (formulario.codalum == "" || formulario.passalu == "") {
       MySwal.fire({
-        title: <p>Campo "Código de alumno" en blanco</p>,
+        title: (
+          <p>
+            ¡Campo(s) vacios!
+            <br />
+            verifique
+          </p>
+        ),
         footer: "Academia 2020",
-        /*didOpen: () => {
-              MySwal.clickConfirm();
-            },*/
       });
-      /*.then(() => {
-         return MySwal.fire(<p>Shorthand works too</p>);
-        });*/
     }
     e.preventDefault();
     getAlumno(formulario).then((rpta) => {
@@ -53,17 +48,16 @@ const Alumno = ({ history }) => {
         history.push("/Alumno_sesion");
       } else {
         console.log("USUARIO INCORRECTO");
-
         MySwal.fire({
-          title: <p>Codigo de alumno incorrecto</p>,
+          title: (
+            <p>
+              ¡Codigo o contraseña incorrecto!
+              <br />
+              verifique
+            </p>
+          ),
           footer: "Academia 2020",
-          /*didOpen: () => {
-                MySwal.clickConfirm();
-              },*/
         });
-        /*.then(() => {
-           return MySwal.fire(<p>Shorthand works too</p>);
-          });*/
       }
     });
   };
