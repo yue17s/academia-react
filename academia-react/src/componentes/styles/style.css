@@ -41,6 +41,10 @@ body::-webkit-scrollbar-thumb:active {
   background-color: var(--color-pri-80) !important;
   transition: all 0.5s ease;
 }
+.gris {
+  background-color: var(--color-gris-card) !important;
+  transition: all 0.5s ease;
+}
 .claro {
   background-color: var(--color-claro);
 }
@@ -1312,6 +1316,8 @@ textarea:hover {
   border: none;
   background-color: var(--color-gris);
   padding: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .carousel__contenedor .rec-carousel .sc-bdfBwQ:hover {
   background-color: var(--color-pri-80);
@@ -1338,6 +1344,8 @@ textarea:hover {
 /******** MAIN-LIBRERIA ********/
 .carousel__contenedor {
   position: relative;
+  background-color: #ffffff;
+  padding-bottom: 20px;
 }
 .carousel__anterior,
 .carousel__siguiente {
@@ -1535,11 +1543,39 @@ textarea:hover {
   margin: auto;
   font-weight: bold;
 }
+.carrito__pasos {
+  background-color: var(--color-gris-card);
+  display: flex;
+}
+.carrito__pasos i {
+  font-size: 1.5rem;
+  padding-right: 15px;
+}
+.pasouno,
+.pasodos,
+.pasotres {
+  flex: 1;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.pactivo {
+  background-color: var(--color-pri-80);
+  color: #ffffff;
+}
+.carrito__listcontenedor {
+  margin-top: 0px;
+}
+.carrito__tit {
+  margin-bottom: 20px;
+}
 .carrito__compras {
   display: flex;
   flex-direction: row;
 }
-
+.ptop {
+  margin-bottom: 10px;
+}
 .carrito__detalle {
   display: flex;
   flex-direction: row;
@@ -1581,6 +1617,11 @@ textarea:hover {
   color: var(--color-pri-70);
   border: 1px solid var(--color-gris);
   cursor: pointer;
+}
+.carri__cant {
+  width: 100%;
+  margin: 15px auto;
+  text-align: center;
 }
 .carri__cant select {
   width: 100%;
@@ -1652,10 +1693,21 @@ textarea:hover {
 }
 .final__left p:hover {
   color: var(--color-sec);
-  
 }
 .final__mapa {
   text-align: center;
+}
+.final__datos {
+  display: flex;
+}
+.final__datos table {
+  width: 350px;
+  border: 2px solid var(--color-pri-70t);
+  padding: 15px;
+  margin-right: 20px;
+}
+.final__datos table td {
+  padding: 10px;
 }
 /********************* 404 ***********************/
 .notfound {

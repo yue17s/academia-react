@@ -26,37 +26,24 @@ const LibreriaCarrito = ({ history }) => {
     <>
       <div className="libre__carrito__right">
         <div className="carrito__finalizar">
-          {autenticado ? (
-            <button
-              className="btn-rojo"
-              onClick={() => {
-                goCarritoFinal();
-              }}
-            >
-              <i>
-                <FontAwesomeIcon icon={faCashRegister} />
-              </i>{" "}
-              Pasar por caja
-            </button>
-          ) : (
-            <button className="btn-rojo"
-              onClick={() => {
-                goCarrito();
-              }}
-            >
-              <i>
-                <FontAwesomeIcon icon={faShoppingCart} />
-              </i>{" "}
-              Finalizar compra
-            </button>
-          )}
+          <button
+            className="btn-rojo"
+            onClick={() => {
+              goCarrito();
+            }}
+          >
+            <i>
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </i>{" "}
+            Ver Carrito
+          </button>
         </div>
         <div className="carrito__final">
           <p>
-            Total de articulos: <b>10</b>{" "}
+            Total items: <b>10</b>{" "}
           </p>
           <p>
-            Subtotal del carrito: <b>S/ 100 </b>{" "}
+            Subtotal: <b>S/ 100 </b>{" "}
           </p>
         </div>
         <div className="carrito__finaldetalles">

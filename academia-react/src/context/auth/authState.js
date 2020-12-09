@@ -56,6 +56,7 @@ const AuthState = (props) => {
     nom_usu: null,
     dire_usu: null,
     email_usu: null,
+    celular_usu: null,
     imagen_usu: null,
     activo: null,
   });
@@ -113,6 +114,10 @@ const AuthState = (props) => {
 
         dni_usu: state.dni_usu,
         ape_usu: state.ape_usu,
+        nom_usu: state.nom_usu,
+        dire_usu: state.dire_usu,
+        imagen_usu: state.imagen_usu,
+        celular_usu: state.celular_usu,
 
         tiposesion: state.tiposesion,
         iniciarSesionState,

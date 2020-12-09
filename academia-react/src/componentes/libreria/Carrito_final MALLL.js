@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import imgs from "../imgs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,25 +7,8 @@ import {
   faCalendarCheck,
   faCashRegister,
 } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../context/auth/authContext";
-import { withRouter } from "react-router-dom";
 
-const Carrito_final = ({ history }) => {
-  const {
-    autenticado,
-    tiposesion,
-
-    imagen_usu,
-    ape_usu,
-    nom_usu,
-    celular_usu,
-    dni_usu,
-    dire_usu,
-  } = useContext(AuthContext);
-  const { cerrarSesion } = useContext(AuthContext);
-  const goLogin = () => history.push("/Alumno");
-  const goMain = () => history.push("/");
-
+const Carrito_final = () => {
   return (
     <>
       <header>
@@ -92,14 +75,6 @@ const Carrito_final = ({ history }) => {
               <div className="final__despacho">
                 <div className="final__left">
                   <p>
-                    <i>
-                      <FontAwesomeIcon icon={faShuttleVan} />
-                    </i>{" "}
-                    Entrega a domicilio
-                  </p>
-                </div>
-                <div className="final__right">
-                  <p>
                     {" "}
                     <i>
                       <FontAwesomeIcon icon={faSchool} />
@@ -107,50 +82,42 @@ const Carrito_final = ({ history }) => {
                     Retiro en Colegio o tiendas
                   </p>
                 </div>
+                <div className="final__right">
+                  <p>
+                    <i>
+                      <FontAwesomeIcon icon={faShuttleVan} />
+                    </i>{" "}
+                    Entrega a domicilio
+                  </p>
+                </div>
               </div>
               <div className="final__lugar">
                 <div className="final__titu">
-                  <p>Tu libreta de direcciones</p>
+                  <p>
+                    Selecciona el departamento, provincia y distrito donde
+                    quiere recojer sus productos
+                  </p>
                 </div>
-                <div className="final__datos">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <img src={imagen_usu}></img>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <b>Entregar a: </b>
-                          {nom_usu} {ape_usu}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <b>Al domicilio: </b>
-                          {dire_usu}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <b>Celular:</b> {celular_usu}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <b>D.N.I.:</b> {dni_usu}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div className="final__btn">
-                    <button>Continuar con el pago</button>
-                  </div>
+                <div className="final__depa">
+                  <select name="" id="">
+                    <option value="">Departamento *</option>
+                    <option>Arequipa</option>
+                  </select>
+                  <select name="" id="">
+                    <option value="">Provincia *</option>
+                    <option>Arequipa</option>
+                  </select>
+                  <select name="" id="">
+                    <option value="">Distrito *</option>
+                    <option>Arequipa</option>
+                  </select>
                 </div>
               </div>
               <div className="final__titu">
-                <p>Costo de envío: S/ 15.00</p>
+                <p>Hay 1 tienda en tu ciudad, encuentra la más cercana a tí.</p>
+              </div>
+              <div className="final__mapa">
+                <h5>Aqui va un mapa de google</h5>
               </div>
             </div>
           </div>

@@ -7,9 +7,9 @@ import { getLibrosRecomendados } from "../../services/librosServices";
 const Libreria_carousel = () => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 500, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
+    { width: 500, itemsToShow: 3 },
+    { width: 768, itemsToShow: 4 },
+    { width: 1200, itemsToShow: 5 },
   ];
   const [libros, setLibros] = useState([]);
   const traerLibros = async () => {

@@ -1,21 +1,17 @@
-import React, { useContext } from "react";
-import AuthContext from "../../context/auth/authContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCashRegister, faPrint } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
 import imgs from "../imgs";
 import { withRouter } from "react-router-dom"; // recibe las propiedades del enrutamiento (goLogin)
+import CarritoLibros from "./CarritoLibros";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendarCheck,
+  faShuttleVan,
+  faCashRegister,
+} from "@fortawesome/free-solid-svg-icons";
+import Libreria from "./Libreria";
+import LibreriaCarrito from "./LibreriaCarrito";
 
-const Carrito = ({ history }) => {
-  const {
-    autenticado,
-    ape_alu,
-    ape_usu,
-    tiposesion,
-    cerrarSesion,
-    cargando,
-  } = useContext(AuthContext);
-  const goSesion = () => history.push("/Sesion");
-  const goCarritoFinal = () => history.push("/CarritoFinal");
+const Carrito = () => {
   return (
     <>
       <header>
@@ -28,122 +24,57 @@ const Carrito = ({ history }) => {
         </div>
       </header>
       <main>
+        <section className="gris">
+          <div className=" contenedor">
+            <div className="carrito__pasos">
+              <div className="pasouno pactivo">
+                <div className="ptop">
+                  <i>
+                    <FontAwesomeIcon icon={faCalendarCheck} />
+                  </i>{" "}
+                  <span>
+                    <b>Paso 1</b>
+                  </span>
+                </div>
+                <div className="pbotton">
+                  <small>Carrito de compras</small>
+                </div>
+              </div>
+              <div className="pasodos">
+                <div className="ptop">
+                  <i>
+                    <FontAwesomeIcon icon={faShuttleVan} />
+                  </i>{" "}
+                  <span>
+                    <b>Paso 2</b>
+                  </span>
+                </div>
+                <div className="pbotton">
+                  <small>Envio | Despacho</small>
+                </div>
+              </div>
+              <div className="pasotres">
+                <div className="ptop">
+                  <i>
+                    <FontAwesomeIcon icon={faCashRegister} />
+                  </i>{" "}
+                  <span>
+                    <b>Paso 3</b>
+                  </span>
+                </div>
+                <div className="pbotton">
+                  <small>Pago seguro | Caja</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="seccion">
           <div className="carrito contenedor">
-            <div className="carrito__titulo">
-              <h3>Carrito de Compras</h3>
+            <div className="carrito__tit">
+              <h5>Carrito de compras:</h5>
             </div>
-            <div className="carrito__compras">
-              <div className="carrito__left">
-                <ul className="carrito__listcontenedor">
-                  <li className="carrito__detalle">
-                    <div className="carri__img ctitu">
-                      <span>Imagen</span>
-                    </div>
-                    <div className="carri__nombre ctitu">
-                      <span>Compra</span>
-                    </div>
-                    <div className="carri__precio ctitu">
-                      <span>Precio</span>
-                    </div>
-                  </li>
-                  <li className="carrito__detalle">
-                    <div className="carri__img">
-                      <img src={imgs[12].imagen} alt="" />
-                    </div>
-                    <div className="carri__nombre">
-                      <div className="carri__nom">
-                        <a href="">
-                          Buenas Escrituras de la sociedad contemporanea de lima
-                          y arequipa en el siglo XX
-                        </a>
-                      </div>
-                      <div className="carri__btn">
-                        <div className="carri__cant">
-                          Cantidad:
-                          <select>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                          </select>
-                        </div>
-                        <button className="oscuro">Eliminar</button>
-                      </div>
-                    </div>
-                    <div className="carri__precio">
-                      <span>S/ 9999.00</span>
-                    </div>
-                  </li>
-                  <li className="carrito__detalle">
-                    <div className="carri__img">
-                      <img src={imgs[12].imagen} alt="" />
-                    </div>
-                    <div className="carri__nombre">
-                      <div className="carri__nom">
-                        <a href="">
-                          Buenas Escrituras de la sociedad contemporanea de lima
-                          y arequipa en el siglo XX
-                        </a>
-                      </div>
-                      <div className="carri__btn">
-                        <div className="carri__cant">
-                          Cantidad:
-                          <select>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                          </select>
-                        </div>
-                        <button className="oscuro">Eliminar</button>
-                      </div>
-                    </div>
-                    <div className="carri__precio">
-                      <span>S/ 989.00</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="carrito__right">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td className="carri__txt">Total items:</td>
-                      <td className="carri__deta">3</td>
-                    </tr>
-                    <tr>
-                      <td className="carri__txt">Subtotal: S/</td>
-                      <td className="carri__deta">5500.00</td>
-                    </tr>
-                  </tbody>
-                </table>
-                {autenticado ? (
-                  <button  className="btn-rojo"
-                  onClick={() => {
-                    goCarritoFinal();
-                  }}>
-                    <i>
-                      <FontAwesomeIcon icon={faCashRegister} />
-                    </i>{" "}
-                    Pasar por caja
-                  </button>
-                ) : (
-                  <button  className="btn-rojo"
-                  onClick={() => {
-                    goSesion();
-                  }}>
-                    <i>
-                      <FontAwesomeIcon icon={faCashRegister} />
-                    </i>{" "}
-                    Pasar por caja
-                  </button>
-                )}
-
-                <button>
-                  <i>
-                    <FontAwesomeIcon icon={faPrint} />
-                  </i>{" "}
-                  Cotización
-                </button>
-              </div>
-            </div>
+            <CarritoLibros />
           </div>
         </section>
       </main>
