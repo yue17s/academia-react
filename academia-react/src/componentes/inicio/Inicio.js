@@ -1,117 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Header from "../Header";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUserGraduate,
-  faChalkboardTeacher,
-  faBook,
-  faShoppingCart,
-  faChevronRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
-import imgs from "../imgs";
+
 import CardCarousel from "../libreria/Libreria_carousel";
 import InstInsEveaca from "../institucional/Intitucion_eveaca";
 import Inst_local from "../institucional/Inst_local";
+import FormularioIni from "../institucional/FormularioIni";
 
 const Inicio = () => {
   return (
     <>
       <Header />
       <main>
-        <section className="seccion">
-          <div className="institucional contenedor">
-            <div className="inst__contenido">
-              <div className="inst__tipo">
-                <div className="inst__top">
-                  <div className="ico">
-                    <i>
-                      <FontAwesomeIcon icon={faChalkboardTeacher} />
-                    </i>
-                  </div>
-                  <div className="titu">
-                    <span>
-                      <Link to="/Inst_docentes">
-                        <a href="./inst_docentes.html">DOCENTES</a>
-                      </Link>
-                    </span>
-                  </div>
-                </div>
-                <div className="inst__botton">
-                  <p>
-                    It is a long established fact that a reader will be
-                    distracted
-                  </p>
-                </div>
-              </div>
-              <div className="inst__tipo">
-                <div className="inst__top">
-                  <div className="ico">
-                    <i>
-                      <FontAwesomeIcon icon={faUserGraduate} />
-                    </i>
-                  </div>
-                  <div className="titu">
-                    <span>
-                      <Link to="/Alumno">
-                        <a href="./alumno.html">ALUMNO</a>
-                      </Link>
-                    </span>
-                  </div>
-                </div>
-                <div className="inst__botton">
-                  <p>
-                    It is a long established fact that a reader will be
-                    distracted
-                  </p>
-                </div>
-              </div>
-              <div className="inst__tipo">
-                <div className="inst__top">
-                  <div className="ico">
-                    <i>
-                      <FontAwesomeIcon icon={faBook} />
-                    </i>
-                  </div>
-                  <div className="titu">
-                    <span>
-                      <Link to="/Inst_biblioteca">
-                        <a href="./inst_biblioteca.html">BIBLIOTECA</a>
-                      </Link>
-                    </span>
-                  </div>
-                </div>
-                <div className="inst__botton">
-                  <p>
-                    It is a long established fact that a reader will be
-                    distracted
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="inst__consulta">
-              <div className="inst__cont">
-                <h3>Dejanos tu Consulta</h3>
-                <h6>Puedes contactarte con nosotros las 24 horas.</h6>
-                <form action="" className="form1">
-                  <input type="text" placeholder="Nombre" />
-                  <br />
-                  <input type="email" placeholder="Email" />
-                  <br />
-                  <input type="tel" placeholder="Telefono" />
-                  <br />
-                  <textarea placeholder="Tu consulta"></textarea>
-                  <br />
-                  <div className="boton">
-                    <button>Enviar</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-        <Inst_local />      
+        <FormularioIni />
+        <Inst_local />
         <CardCarousel />
         <section className="seccion">
           <div className="tramites contenedor">

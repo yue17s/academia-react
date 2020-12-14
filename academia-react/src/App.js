@@ -23,6 +23,7 @@ import AuthState from "./context/auth/authState";
 import AppM from "./componentes/alumno/AppM"; // del PDF
 import LibreriaState from "./context/libreria/libreriaState";
 import CarritoFinal from "./componentes/libreria/Carrito_final";
+import Pasarela from "./componentes/libreria/Pasarela";
 
 const App = () => {
   return (
@@ -42,7 +43,7 @@ const App = () => {
             <Route exact path="/Alumno" component={Alumno} />
             <Route exact path="/Alumno_sesion" component={AlumnoSesion} />
             <Route exact path="/Cur_horarios" component={CurHorarios} />
-            
+            <Route exact path="/Pasarela" component={Pasarela} />
             <Route exact path="/AppM" component={AppM} /> // del PDF
             <Route
               exact

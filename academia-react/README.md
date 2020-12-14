@@ -7,3 +7,11 @@
 ## Instalar Libreria de PDF ara REACT
 ### https://react-pdf.org/
 - npm install @react-pdf/renderer --save
+
+## PASARELA DE PAGOS - STRIPE
+### https://www.youtube.com/watch?v=0Kd0LeAMGf4
+### https://stripe.com/docs/stripe-js/react
+- npm install --save @stripe/react-stripe-js @stripe/stripe-js
+### STRIPE DJANGO
+- pip install stripe
+

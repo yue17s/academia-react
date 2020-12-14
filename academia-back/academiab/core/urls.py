@@ -46,6 +46,8 @@ urlpatterns = [
     #**********************************************************************************#
     path('List_Libre_Recomendados/', views.LibrePediRecomendadosDetaViewSet.as_view()),
     path('List_LibrePedi_LibrePediDeta/', views.LibrePediLibrePediDetaViewSet.as_view()),  # POST --> http://127.0.0.1:8000/List_LibrePedi_LibrePediDeta/
+    path('Registrar_Checkout/', views.RegistrarCheckout.as_view()),  # POST --> http://127.0.0.1:8000/Registrar_Checkout/
+
 
     # ENDPOINT para el API RESTFULL
     path('apis/', include(router.urls)),

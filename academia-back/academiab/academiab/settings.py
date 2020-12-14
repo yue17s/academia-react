@@ -25,6 +25,7 @@ SECRET_KEY = 'akg)*7u&6m=f^n*vmf^#401858#b2py&&-%xw89vo-xjo9fv4p'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']  # para el HOST
+# ALLOWED_HOSTS = ['https://academiayue.herokuapp.com/', 'https://m.stripe.com/6', 'http://localhost:3000']
 # ALLOWED_HOSTS = []   # para el HOST
 
 
@@ -56,10 +57,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
-
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGINS_WHITELIST = [
     "http://localhost:3000",  # REACT
-    "http://127.0.0.1:8000"  # DJANGO
+    "http://127.0.0.1:8000",  # DJANGO
+    # "https://academiayue.herokuapp.com"
+    # "https://m.stripe.com/6",
+    # "https://academiayue.herokuapp.com/Registrar_Checkout"
 ]
 
 MIDDLEWARE = [

@@ -33,8 +33,16 @@ const LibreriaState = (props) => {
     });
   };
 
+  const totales = () => {
+    let { carrito } = state;
+    carrito = carrito.map((objLibroCarrito) => {
+      objLibroCarrito.sudo = objLibroCarrito.sudo + objLibroCarrito.subtotal;
+    });
+  };
+
   const agregarAlCarrito = (objLibro) => {
     let { carrito } = state;
+
     if (
       carrito.find(
         (objLibroCarrito) => objLibroCarrito.id_libre === objLibro.id_libre
@@ -42,14 +50,14 @@ const LibreriaState = (props) => {
     ) {
       // SI HAY LIBRO EN EL CARRITO
       carrito = carrito.map((objLibroCarrito) => {
-        //const suma = objLibroCarrito.subtotal + objLibroCarrito.subtotal;
-        //console.log(suma);
         if (objLibroCarrito.id_libre === objLibro.id_libre) {
           objLibroCarrito.cant++;
           objLibroCarrito.subtotal =
             objLibroCarrito.precio_libre * objLibroCarrito.cant;
+          objLibroCarrito.subtotal = 1;
+          objLibroCarrito.subtotal =
+            objLibroCarrito.cant * objLibroCarrito.precio_libre;
         }
-
         return objLibroCarrito;
       });
     } else {
@@ -58,7 +66,7 @@ const LibreriaState = (props) => {
         ...objLibro,
         cant: 1,
         subcant: 1,
-        subtotal: parseInt(objLibro.precio_libre),
+        subtotal: objLibro.precio_libre,
       });
     }
     dispatch({

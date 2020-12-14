@@ -69,10 +69,12 @@ class AlumnosNotasSerializer(serializers.ModelSerializer):
         # fields = '__all__'
         fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosNotasAlumnos']
 
+
 class DetalleAlumnoNotaSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlumnosNotas
         fields = '__all__'
+
 
 class AlumnosAsistenciaSerializer(serializers.ModelSerializer):
     alumnosAsistenciaAlumnos = DetalleAlumnosAsistenciaSerializer(many=True, read_only=True)

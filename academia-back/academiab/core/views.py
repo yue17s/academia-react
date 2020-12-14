@@ -17,10 +17,11 @@ from rest_framework import generics
 from rest_framework import viewsets  # METODOS para Listas
 import json
 from .models import Alumnos, AlumnosAsistencia, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, \
-    LibreriaPedidoDetalle
+    LibreriaPedidoDetalle, Checkout
 from .models import User  # LOGIN
 from rest_framework.authtoken.models import Token
 from django.shortcuts import get_list_or_404, get_object_or_404
+import stripe
 
 
 # GENERICS y sus Metodos
@@ -306,6 +307,28 @@ class LibrePediRecomendadosDetaViewSet(generics.ListAPIView):
     queryset = Libreria.objects.filter(recomendado_libre='True')
     serializer_class = LibrePediRecomendadosDetaSerializer
     permission_classes = (AllowAny,)
+
+
+class RegistrarCheckout(generics.CreateAPIView):
+    permission_classes = (AllowAny,)
+    stripe.api_key = 'sk_test_51HwdbSIi6kh3acUzqGsyC58A7m1kBuzwAkF7qzRHvVS7RIDW0Z6WSmzgfafWdodD6hqAblYrYQxJIIwr4ktPift9000fAZCEp4'
+
+    def post(self, request, format=None):
+        postman_id = request.data['id']
+        postman_fecha_check = request.data['fecha_check']
+
+        # ************************************************
+        # ORM DJango
+        checkout = Checkout()
+        checkout.id = postman_id
+        checkout.fecha_check = postman_fecha_check
+        if (checkout.id == ""):
+            data = {'detail': 'Checkout NO RECIBIDO'}
+        else:
+            checkout.save()
+            data = {'detail': 'Checkout guardado correctamente'}
+        reply = json.dumps(data)
+        return HttpResponse(reply, content_type='application/json')
 
 
 ##################################################################

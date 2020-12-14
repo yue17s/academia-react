@@ -25,6 +25,7 @@ const Carrito_final = ({ history }) => {
   const { cerrarSesion } = useContext(AuthContext);
   const goLogin = () => history.push("/Alumno");
   const goMain = () => history.push("/");
+  const goPasarela = () => history.push("/Pasarela");
 
   return (
     <>
@@ -110,7 +111,7 @@ const Carrito_final = ({ history }) => {
               </div>
               <div className="final__lugar">
                 <div className="final__titu">
-                  <p>Tu libreta de direcciones</p>
+                  <p>Tu libreta de direcciones:</p>
                 </div>
                 <div className="final__datos">
                   <table>
@@ -145,7 +146,16 @@ const Carrito_final = ({ history }) => {
                     </tbody>
                   </table>
                   <div className="final__btn">
-                    <button>Continuar con el pago</button>
+                    <button
+                      onClick={() => {
+                        goPasarela();
+                      }}
+                    >
+                      <i>
+                        <FontAwesomeIcon icon={faCashRegister} />
+                      </i>{" "}
+                      Continuar con el pago
+                    </button>
                   </div>
                 </div>
               </div>

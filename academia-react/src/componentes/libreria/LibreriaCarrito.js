@@ -43,7 +43,7 @@ const LibreriaCarrito = ({ history }) => {
             Total items: <b>10</b>{" "}
           </p>
           <p>
-            Subtotal: <b>S/ 100 </b>{" "}
+            Subtotal: <b>S/ 1000 </b>{" "}
           </p>
         </div>
         <div className="carrito__finaldetalles">
@@ -68,6 +68,7 @@ const LibreriaCarrito = ({ history }) => {
                     <small>
                       <b>S/ {objLibroCarrito.precio_libre}</b>
                     </small>
+                    <small> - Suto: {objLibroCarrito.suto}</small>
                   </td>
                   <td className="libre__carri__deta">{objLibroCarrito.cant}</td>
                 </tr>

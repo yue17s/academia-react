@@ -369,6 +369,16 @@ class Facturacion(models.Model):
         verbose_name_plural = "facturacion"
 
 
+class Checkout(models.Model):
+    id = models.IntegerField(primary_key=True, help_text="Llega del FrontEnd")
+    fecha_check = models.DateField("Fecha de ID Stripe")
+
+    class Meta:
+        managed = False
+        db_table = 'checkout'
+        verbose_name_plural = "checkouts"
+
+
 # ***************************************************************************************#
 # ***************************************************************************************#
 class Matricula(models.Model):

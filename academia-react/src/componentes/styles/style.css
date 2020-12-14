@@ -140,6 +140,7 @@ button:hover {
 }
 .btn-rojo {
   background-color: red;
+  width: 100%;
 }
 .btn-rojo:hover {
   background-color: rgb(179, 1, 1);
@@ -1267,9 +1268,13 @@ textarea:hover {
   flex-direction: column;
   align-items: center;
 }
+.carrito__finalizar {
+  width: 100%;
+}
 .carrito__final {
   width: 100%;
   background-color: #ffffff;
+  margin-top: 20px;
 }
 .carrito__final p {
   padding-left: 20px;
@@ -1708,6 +1713,22 @@ textarea:hover {
 }
 .final__datos table td {
   padding: 10px;
+}
+.final__datos table img {
+  display: block;
+  margin: auto;
+  width: 150px;
+}
+.pasarela__card {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid var(--color-sec);
+  transition: all 0.5s ease;
+}
+.pasarela__buy {
+  margin-top: 20px;
 }
 /********************* 404 ***********************/
 .notfound {
