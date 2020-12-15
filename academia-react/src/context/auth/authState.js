@@ -36,7 +36,6 @@ const AuthState = (props) => {
     //cargando: true,
     autenticado: false,
     tiposesion: null,
-
     codigo_alu: null,
     pass_alu: null,
     ape_alu: null,

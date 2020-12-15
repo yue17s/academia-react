@@ -42,6 +42,7 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="pasarela__card">
+        <h5>Pago Seguro con STRIPE:</h5>
         <p>Insertar datos de tarjeta de credito:</p>
         <CardElement />
       </div>
@@ -50,7 +51,7 @@ const CheckoutForm = () => {
           <i>
             <FontAwesomeIcon icon={faCreditCard} />
           </i>{" "}
-          Buy
+          Registre Pago
         </button>
       </div>
     </form>

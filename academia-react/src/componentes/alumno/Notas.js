@@ -7,20 +7,11 @@ import { getNotas } from "../../services/notasServices";
 import { withRouter } from "react-router-dom";
 import normalize from "./notas.css";
 
-export const Notas = ({ history }) => {
-  const [notas, setNotas] = useState([]);
-  const traerNotas = async () => {
-    const data = await getNotas();
-    setNotas(data);
-  };
-  useEffect(() => {
-    traerNotas();
-  }, []);
-
+const Notas = ({ history }) => {
   const {
     autenticado,
     tiposesion,
-    codalum,
+    codigo_alu,
     imagen_alu,
     nom_alu,
     nota1_nota,
@@ -33,7 +24,23 @@ export const Notas = ({ history }) => {
     alumnosNotasCurso,
   } = useContext(AuthContext);
 
-  // const { globalNotas } = useContext(AuthContext);
+  const [notas, setNotas] = useState([]);
+  console.log("PROBA: ");
+  console.log(notas);
+  const traerNotas = async (objAl) => {
+    console.log("CODIGO ALUMNO");
+    console.log(objAl);
+    const data = await getNotas(objAl);
+    setNotas(data.alumnosNotasAlumnos);
+    //console.log("SET NOTAS:");
+    //console.log(data.alumnosNotasAlumnos);
+  };
+
+  useEffect(() => {
+    console.log("TRAER NOTAS: ");
+    console.log(AuthContext);
+    traerNotas("AL002"); // aqui probar
+  }, []);
 
   return (
     <>
@@ -52,7 +59,7 @@ export const Notas = ({ history }) => {
             <div className="alumnos__titulo">
               <h3>ALUMNO</h3>
               <h6>
-                {nom_alu} {ape_alu}
+                {nom_alu} {ape_alu} - {codigo_alu}
               </h6>
             </div>
             {autenticado ? (

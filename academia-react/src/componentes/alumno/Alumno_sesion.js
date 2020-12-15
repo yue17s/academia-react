@@ -28,7 +28,7 @@ const Alumno_sesion = ({ history }) => {
   const { cerrarSesion } = useContext(AuthContext);
   const goLogin = () => history.push("/Alumno");
   const goMain = () => history.push("/");
-  //const goNotas = () => history.push("/Notas");
+  const goNotas = () => history.push("/Notas");
   // const goAsistencia = () => history.push("/Asistencias");
 
   return (
@@ -65,7 +65,13 @@ const Alumno_sesion = ({ history }) => {
                         </i>{" "}
                         VER ASISTENCIAS
                       </button>
-                      <button>
+                      <button
+                        onClick={() => {
+                          {
+                            autenticado ? goNotas(codigo_alu) : goMain();
+                          }
+                        }}
+                      >
                         <i>
                           <FontAwesomeIcon icon={faBookReader} />
                         </i>{" "}
@@ -121,6 +127,8 @@ const Alumno_sesion = ({ history }) => {
                           </tr>
                         </tbody>
                       </table>
+                      <br></br>
+                      <br></br>
                       <table>
                         <thead>
                           <tr>
@@ -137,39 +145,6 @@ const Alumno_sesion = ({ history }) => {
                           <tr>
                             <td className="al_subtitulo">Madre:</td>
                             <td>{mama_alu}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th colspan="2" className="al__titulo">
-                              Información Académica
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td className="estatico al_subtitulo">Sección:</td>
-                            <td>
-                              5A -{" "}
-                              <a href="./cur_horarios.html">
-                                Ver horarios (clic)
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="al_subtitulo">Pagos:</td>
-                            <td>5 cuotas</td>
-                          </tr>
-                          <tr>
-                            <td className="al_subtitulo">Deuda:</td>
-                            <td>
-                              4 cuotas (S/ 300.00) -{" "}
-                              <a href="./cur_horarios.html">
-                                Formas de pago (clic)
-                              </a>
-                            </td>
                           </tr>
                         </tbody>
                       </table>
