@@ -1,20 +1,42 @@
+th {
+  text-align: center;
+}
 
+td {
+  letter-spacing: 1px;
+  text-align: center;
+}
 
-  
-  th {
-    letter-spacing: 2px;
-    text-align: center;
-  }
-  
-  td {
-    letter-spacing: 1px;
-    text-align: center;
-  }
-  
-  tbody td {
-    text-align: center;
-  }
-  
-  tfoot th {
-    text-align: right;
-  }
+tbody td {
+  text-align: center;
+}
+
+tfoot th {
+  text-align: right;
+}
+.alumnos__alumno {
+  width: 100%;
+}
+.alumnos__informacion {
+  width: 100%;
+}
+.alumnos__datos {
+  background-color: #ededed;
+  display: flex;
+  justify-content: center;
+}
+.al__img {
+  margin-right: 20px;
+}
+.al__img img {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100px;
+}
+.al__datos li {
+  margin-bottom: 10px;
+}
+
+.alumnos__alumno {
+  margin-top: 10px;
+}

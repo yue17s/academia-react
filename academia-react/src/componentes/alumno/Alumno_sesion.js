@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import AuthContext from "../../context/auth/authContext";
-import { withRouter } from "react-router-dom";
+//import { withRouter } from "react-router-dom";
 
 const Alumno_sesion = ({ history }) => {
   const {
@@ -162,7 +162,7 @@ const Alumno_sesion = ({ history }) => {
                   <i>
                     <FontAwesomeIcon icon={faUser} />
                   </i>{" "}
-                  Iniciar sesión
+                  Iniciar sesión de ALumno
                 </button>
               </div>
             )}

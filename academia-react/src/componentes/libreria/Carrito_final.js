@@ -8,13 +8,10 @@ import {
   faCashRegister,
 } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../context/auth/authContext";
-import { withRouter } from "react-router-dom";
+//import { withRouter } from "react-router-dom";
 
 const Carrito_final = ({ history }) => {
   const {
-    autenticado,
-    tiposesion,
-
     imagen_usu,
     ape_usu,
     nom_usu,
@@ -22,9 +19,7 @@ const Carrito_final = ({ history }) => {
     dni_usu,
     dire_usu,
   } = useContext(AuthContext);
-  const { cerrarSesion } = useContext(AuthContext);
-  const goLogin = () => history.push("/Alumno");
-  const goMain = () => history.push("/");
+
   const goPasarela = () => history.push("/Pasarela");
 
   return (

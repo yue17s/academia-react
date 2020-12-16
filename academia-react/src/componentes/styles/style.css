@@ -1095,6 +1095,7 @@ textarea:hover {
 }
 .alumnos__left {
   width: 300px;
+  margin-right: 40px;
 }
 .alumnos__right {
   width: 60%;
@@ -1111,14 +1112,16 @@ textarea:hover {
 .alumnos__descarga button {
   width: 100%;
 }
-.alumnos__informacion {
-  margin-left: 40px;
-}
+
 .alumnos__informacion table {
   width: 100%;
 }
 .alumnos__informacion tr {
   height: 35px;
+}
+
+.alumnos__informacion td {
+  border-bottom: 1px solid var(--color-gris);
 }
 .alumnos__informacion .estatico {
   width: 110px;
@@ -1130,6 +1133,9 @@ textarea:hover {
 .alumnos__informacion .al_subtitulo {
   font-weight: bold;
   padding-left: 20px;
+}
+.alumnos__null {
+  text-align: center;
 }
 /********************* BIBLIOTECA ****************/
 .dispo {
