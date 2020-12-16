@@ -96,7 +96,7 @@ class Alumnos(models.Model):
 class AlumnosAsistencia(models.Model):
     id_asis = models.AutoField(primary_key=True)
     alumnos_id_alu = models.ForeignKey(Alumnos, models.DO_NOTHING, db_column='alumnos_id_alu',
-                                       related_name="alumnosAsistenciaAlumnos")
+                                       related_name="alumnosAsistenciasAlumnos")
     fecha_asis = models.DateField("Fecha que asistio")
 
     def __str__(self):
@@ -107,7 +107,7 @@ class AlumnosAsistencia(models.Model):
         db_table = 'alumnos_asistencia'
         verbose_name_plural = "alumnos - asistencias"
         verbose_name = 'Alumno - asistencia'
-        ordering = ['alumnos_id_alu']
+        ordering = ['alumnos_id_alu', 'fecha_asis']
 
 
 class AlumnosNotas(models.Model):

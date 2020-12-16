@@ -41,15 +41,41 @@ class AlumnosLoginSerializer(serializers.ModelSerializer):
         fields = ['codigo_alu', 'pass_alu']
 
 
-class DetalleAlumnosAsistenciaSerializer(serializers.ModelSerializer):
+######
+class DetalleAlumnosAsistenciasSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = AlumnosAsistencia
         # fields = '__all__'
         fields = ['id_asis', 'alumnos_id_alu', 'fecha_asis']
 
 
+class AlumnosAsistenciasSerializer(serializers.ModelSerializer):
+    alumnosAsistenciasAlumnos = DetalleAlumnosAsistenciasSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Alumnos
+        fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosAsistenciasAlumnos']
+
+
+class AlumnosAsistenciaSerializer(serializers.ModelSerializer):
+    alumnosAsistenciasAlumnos = DetalleAlumnosAsistenciasSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Alumnos
+        # fields = '__all__'
+        fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosAsistenciasAlumnos']
+
+
+class DetalleAlumnoAsistenciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlumnosAsistencia
+        fields = '__all__'
+
+
+#################
+
 class DetalleAlumnosNotasSerializer(serializers.ModelSerializer):
-    # nom_docemate = serializers.CharField(source='materia_id_mate.nom_mate')
     alumnosNotasCurso = serializers.CharField(source='cursos_id_curso.nom_curso')
     alumnosNotasMatricula = serializers.CharField(source='matricula_id_mat.codigo_mat')
 
@@ -65,8 +91,6 @@ class AlumnosNotasSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Alumnos
-        # fields = ['alumnos_id_alu', 'matricula_id_mat', 'cursos_id_curso', 'nota1_nota', 'nota2_nota', 'promedio_nota']
-        # fields = '__all__'
         fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosNotasAlumnos']
 
 
@@ -74,15 +98,6 @@ class DetalleAlumnoNotaSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlumnosNotas
         fields = '__all__'
-
-
-class AlumnosAsistenciaSerializer(serializers.ModelSerializer):
-    alumnosAsistenciaAlumnos = DetalleAlumnosAsistenciaSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Alumnos
-        # fields = '__all__'
-        fields = ['id_alu', 'codigo_alu', 'pass_alu', 'ape_alu', 'nom_alu', 'imagen_alu', 'alumnosAsistenciaAlumnos']
 
 
 # *********************************************************************************#

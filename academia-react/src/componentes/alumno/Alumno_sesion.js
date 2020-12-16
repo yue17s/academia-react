@@ -29,7 +29,7 @@ const Alumno_sesion = ({ history }) => {
   const goLogin = () => history.push("/Alumno");
   const goMain = () => history.push("/");
   const goNotas = () => history.push("/Notas");
-  // const goAsistencia = () => history.push("/Asistencias");
+  const goAsistencias = () => history.push("/Asistencias");
 
   return (
     <>
@@ -59,7 +59,13 @@ const Alumno_sesion = ({ history }) => {
                       <img src={imagen_alu} alt="" />
                     </div>
                     <div className="alumnos__descarga">
-                      <button>
+                      <button
+                        onClick={() => {
+                          {
+                            autenticado ? goAsistencias(codigo_alu) : goMain();
+                          }
+                        }}
+                      >
                         <i>
                           <FontAwesomeIcon icon={faClipboard} />
                         </i>{" "}

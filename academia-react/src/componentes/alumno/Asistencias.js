@@ -3,14 +3,14 @@ import React, { useContext, useEffect, useState } from "react";
 import Alumno_sesion from "./Alumno_sesion";
 import Alumno from "./Alumno";
 import AuthContext from "../../context/auth/authContext";
-import { getNotas } from "../../services/notasServices";
+import { getAsistencias } from "../../services/asistenciasServices";
 import { withRouter } from "react-router-dom";
 import normalize from "./notas.css";
 import AuthState from "../../context/auth/authState";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-const Notas = ({ history }) => {
+const Asistencias = ({ history }) => {
   const {
     autenticado,
     tiposesion,
@@ -28,18 +28,18 @@ const Notas = ({ history }) => {
     alumnosNotasCurso,
   } = useContext(AuthContext);
 
-  const [notas, setNotas] = useState([]);
+  const [asistencias, setAsistencias] = useState([]);
 
-  const traerNotas = async (objAlum) => {
-    const data = await getNotas(objAlum);
-    setNotas(data.alumnosNotasAlumnos);
+  const traerAsistencias = async (objAlum) => {
+    const data = await getAsistencias(objAlum);
+    setAsistencias(data.alumnosAsistenciasAlumnos);
   };
 
   useEffect(() => {
     if (codigo_alu == null) {
       console.log("ERROR");
     } else {
-      traerNotas(codigo_alu);
+      traerAsistencias(codigo_alu);
     }
   }, [codigo_alu]);
 
@@ -61,7 +61,7 @@ const Notas = ({ history }) => {
         <section className="seccion">
           <div className="alumnos contenedor">
             <div className="alumnos__titulo">
-              <h3>Registro de Notas</h3>
+              <h3>Registro de Asistencias</h3>
             </div>
             {autenticado ? (
               <div className="alumnos__datos">
@@ -93,7 +93,9 @@ const Notas = ({ history }) => {
               </div>
             ) : (
               <div className="alumnos__null">
-                <h6>Para ver sus notas debe estar registrado como ALUMNO</h6>
+                <h6>
+                  Para ver su asistencia debe estar registrado como ALUMNO
+                </h6>
               </div>
             )}
 
@@ -106,22 +108,22 @@ const Notas = ({ history }) => {
                         <table>
                           <thead>
                             <tr className="al__titulo">
-                              <th scope="col">Matri.</th>
-                              <th scope="col">Curso</th>
-                              <th scope="col">Nota1</th>
-                              <th scope="col">Nota2</th>
-                              <th scope="col">Promedio</th>
+                              <th scope="col">Fechas</th>
+                              <th scope="col">Mes</th>
+                              <th scope="col">Dia</th>
                             </tr>
                           </thead>
                           <tbody>
-                            {notas.map((objNota) => {
+                            {asistencias.map((objAsistencia) => {
                               return (
                                 <tr>
-                                  <td>{objNota.alumnosNotasMatricula}</td>
-                                  <td>{objNota.alumnosNotasCurso}</td>
-                                  <td>{objNota.nota1_nota}</td>
-                                  <td>{objNota.nota2_nota}</td>
-                                  <td>{objNota.promedio_nota}</td>
+                                  <td>{objAsistencia.fecha_asis}</td>
+                                  <td>
+                                    {[objAsistencia.fecha_asis.substr(5, 2)]}
+                                  </td>
+                                  <td>
+                                    {[objAsistencia.fecha_asis.substr(8, 2)]}
+                                  </td>
                                 </tr>
                               );
                             })}
@@ -155,4 +157,4 @@ const Notas = ({ history }) => {
   );
 };
 
-export default withRouter(Notas);
+export default withRouter(Asistencias);

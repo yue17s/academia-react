@@ -22,8 +22,11 @@ urlpatterns = [
     path('Detail_Alumno/(<codigo_alu>)/(<pass_alu>)/', views.DetalleAlumnosCodigoViewset.as_view()),  # GET --> http://127.0.0.1:8000/Detail_Alumno/<codigo_alu>/
     path('Create_List_Alumnos/', views.AlumnosCreateListViewset.as_view()),  # POST --> http://127.0.0.1:8000/Create_List_Alumnos/
     path('Crear_Alumno/', views.RegistrarAlumnos.as_view()),  # POST --> http://127.0.0.1:8000/Create_One_Alumno/
-    path('Detail_Alumno_Asistencia/', views.DetalleAlumnosAsistenciaViewset.as_view()), # GET --> http://127.0.0.1:8000/Detail_Alumno_Asistencia/
+
+    path('Detail_Alumnos_Asistencias/', views.DetalleAlumnosAsistenciasViewset.as_view()), # GET --> http://127.0.0.1:8000/Detail_Alumno_Asistencia/
+    path('Detail_Alumno_Asistencia/<codigo_alu>/', views.DetalleAlumnoAsistenciaViewset.as_view()),
     path('List_Alumno_Asistencia/', views.AlumnosAsistenciaViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Asistencia/
+
     path('Detail_Alumnos_Notas/', views.DetalleAlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumno_Asistencia
     path('Detail_Alumno_Nota/<codigo_alu>/', views.DetalleAlumnoNotaViewset.as_view()),
     path('List_Alumnos_Notas/', views.AlumnosNotasViewset.as_view()), # GET --> http://127.0.0.1:8000/List_Alumnos_Notas/

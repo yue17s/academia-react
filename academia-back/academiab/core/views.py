@@ -4,8 +4,9 @@ from django.shortcuts import render
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
-from .serializers import AlumnosSerializer, AlumnosAsistenciaSerializer, AlumnosNotasSerializer, \
-    DetalleAlumnosAsistenciaSerializer, \
+from .serializers import AlumnosSerializer, AlumnosAsistenciaSerializer, AlumnosAsistenciasSerializer, \
+    AlumnosNotasSerializer, \
+    DetalleAlumnosAsistenciasSerializer, \
     DetalleAlumnosNotasSerializer, DetalleAlumnoNotaSerializer, \
     AlumnosLoginSerializer, DocentesSerializer, \
     MateriaSerializer, \
@@ -21,7 +22,9 @@ from .models import Alumnos, AlumnosAsistencia, AlumnosNotas, Docentes, Materia,
 from .models import User  # LOGIN
 from rest_framework.authtoken.models import Token
 from django.shortcuts import get_list_or_404, get_object_or_404
-import stripe
+
+
+# import stripe
 
 
 # GENERICS y sus Metodos
@@ -123,6 +126,8 @@ class MultipleFieldLookupMixin:
         return obj
 
 
+###########
+
 class DetalleAlumnosCodigoViewset(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     queryset = Alumnos.objects.all()
     serializer_class = AlumnosSerializer
@@ -130,11 +135,26 @@ class DetalleAlumnosCodigoViewset(MultipleFieldLookupMixin, generics.RetrieveAPI
     permission_classes = (AllowAny,)
 
 
-class DetalleAlumnosAsistenciaViewset(generics.ListCreateAPIView):
+class DetalleAlumnosAsistenciasViewset(generics.ListCreateAPIView):
     queryset = AlumnosAsistencia.objects.all()
-    serializer_class = DetalleAlumnosAsistenciaSerializer
+    serializer_class = DetalleAlumnosAsistenciasSerializer
     permission_classes = (AllowAny,)
 
+
+class AlumnosAsistenciaViewset(generics.ListAPIView):
+    queryset = Alumnos.objects.all()
+    serializer_class = AlumnosAsistenciaSerializer
+    permission_classes = (AllowAny,)
+
+
+class DetalleAlumnoAsistenciaViewset(generics.RetrieveAPIView):
+    queryset = Alumnos.objects.all()
+    serializer_class = AlumnosAsistenciasSerializer
+    lookup_field = 'codigo_alu'
+    permission_classes = (AllowAny,)
+
+
+###########
 
 class DetalleAlumnosNotasViewset(generics.ListCreateAPIView):
     queryset = AlumnosNotas.objects.all()
@@ -152,18 +172,6 @@ class DetalleAlumnoNotaViewset(generics.RetrieveAPIView):
     queryset = Alumnos.objects.all()
     serializer_class = AlumnosNotasSerializer
     lookup_field = 'codigo_alu'
-    permission_classes = (AllowAny,)
-
-
-class DetalleAlumnosAsistenciaViewset(generics.ListCreateAPIView):
-    queryset = AlumnosAsistencia.objects.all()
-    serializer_class = DetalleAlumnosAsistenciaSerializer
-    permission_classes = (AllowAny,)
-
-
-class AlumnosAsistenciaViewset(generics.ListAPIView):
-    queryset = Alumnos.objects.all()
-    serializer_class = AlumnosAsistenciaSerializer
     permission_classes = (AllowAny,)
 
 
@@ -311,7 +319,8 @@ class LibrePediRecomendadosDetaViewSet(generics.ListAPIView):
 
 class RegistrarCheckout(generics.CreateAPIView):
     permission_classes = (AllowAny,)
-    stripe.api_key = 'sk_test_51HwdbSIi6kh3acUzqGsyC58A7m1kBuzwAkF7qzRHvVS7RIDW0Z6WSmzgfafWdodD6hqAblYrYQxJIIwr4ktPift9000fAZCEp4'
+
+    # stripe.api_key = 'sk_test_51HwdbSIi6kh3acUzqGsyC58A7m1kBuzwAkF7qzRHvVS7RIDW0Z6WSmzgfafWdodD6hqAblYrYQxJIIwr4ktPift9000fAZCEp4'
 
     def post(self, request, format=None):
         postman_id = request.data['id']
