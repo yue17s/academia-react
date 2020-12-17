@@ -12,6 +12,7 @@ import {
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import imgs from "../imgs";
+import emailjs from "emailjs-com";
 
 const Formulario = () => {
   const [formulario, setFormulario] = useState({
@@ -20,6 +21,57 @@ const Formulario = () => {
     telefono: "",
     consulta: "",
   });
+
+  function sendEmail(e) {
+    e.preventDefault();
+
+    const MySwal = withReactContent(Swal);
+    if (
+      formulario.nombre == "" ||
+      formulario.email == "" ||
+      formulario.telefono == "" ||
+      formulario.consulta == ""
+    ) {
+      MySwal.fire({
+        title: (
+          <p>
+            ¡Campo(s) vacios!
+            <br />
+            verifique
+          </p>
+        ),
+        footer: "Academia 2020",
+      });
+    } else {
+      emailjs
+        .sendForm(
+          "service_od25brj",
+          "template_3vknwpd",
+          e.target,
+          "user_ztA21lOBkQzjV9rrQyuyx"
+        )
+        .then(
+          (result) => {
+            MySwal.fire({
+              title: (
+                <p>
+                  {" "}
+                  {result.text}
+                  <br />
+                  Consulta con exito!
+                </p>
+              ),
+              footer: "Academia 2020",
+            });
+            console.log("Aqui tendrias que limpiar los TEXTS");
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    }
+  }
 
   const handleChangeF = (e) => {
     setFormulario({
@@ -121,13 +173,13 @@ const Formulario = () => {
             <div className="inst__cont">
               <h3>Dejanos tu Consulta</h3>
               <h6>Puedes contactarte con nosotros las 24 horas.</h6>
-              <form onSubmit={handleSubmitF} className="form1">
+              <form onSubmit={sendEmail} className="form1">
                 <input
                   type="text"
                   name="nombre"
                   value={formulario.nombre}
                   onChange={handleChangeF}
-                  placeholder="Nombre"
+                  placeholder="Nombre*"
                 />
                 <br />
                 <input
@@ -135,7 +187,7 @@ const Formulario = () => {
                   name="email"
                   value={formulario.email}
                   onChange={handleChangeF}
-                  placeholder="Email"
+                  placeholder="Email*"
                 />
                 <br />
                 <input
@@ -143,17 +195,20 @@ const Formulario = () => {
                   name="telefono"
                   value={formulario.telefono}
                   onChange={handleChangeF}
-                  placeholder="Telefono"
+                  placeholder="Teléfono*"
                 />
                 <br />
                 <textarea
                   name="consulta"
                   value={formulario.consulta}
                   onChange={handleChangeF}
-                  placeholder="Tu consulta"
+                  placeholder="Tu consulta*"
                 ></textarea>
-                <br />
-                <div className="boton">
+                <br /><br />
+                <div className="msjrequerido">
+                  <small>* Campos Requeridos</small>
+                </div>
+                <div type="submit" value="Send Message" className="boton">
                   <button>Enviar</button>
                 </div>
               </form>

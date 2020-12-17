@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { PDFViewer } from "@react-pdf/renderer";
-import MyDocument from "./MyDocument";
 import imgs from "../imgs";
 import AuthContext from "../../context/auth/authContext";
+import MyDocument from "./MyDocument";
+import Notas from "./Notas";
 
 const AppM = () => (
   <>

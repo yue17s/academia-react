@@ -26,6 +26,7 @@ import CarritoFinal from "./componentes/libreria/Carrito_final";
 import Pasarela from "./componentes/libreria/Pasarela";
 import Asistencias from "./componentes/alumno/Asistencias";
 import Notas from "./componentes/alumno/Notas";
+import Formulario from "./componentes/institucional/FormularioIni";
 
 const App = () => {
   return (

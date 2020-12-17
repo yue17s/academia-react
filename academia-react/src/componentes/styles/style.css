@@ -114,6 +114,9 @@ a {
   background-color: var(--color-pri-70);
   margin-right: 15px;
 }
+.msjrequerido {
+  color: var(--color-gris);
+}
 .boton {
   height: 70px;
   margin-top: 10px;
