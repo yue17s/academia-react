@@ -14,4 +14,6 @@
 - npm install --save @stripe/react-stripe-js @stripe/stripe-js
 ### STRIPE DJANGO
 - pip install stripe
+## PARA ENVIAR EMAIL AL CORREO
+- https://dashboard.emailjs.com/sign-in
 
