@@ -44,6 +44,7 @@ const Nav = ({ history }) => {
   const {
     autenticado,
     ape_alu,
+    imagen_alu,
     ape_usu,
     tiposesion,
     cerrarSesion,
@@ -72,7 +73,12 @@ const Nav = ({ history }) => {
                   <span>Cargando...</span>
                 ) : autenticado ? (
                   <div>
-                    <span className="session_ape">Bienvenido {ape_alu} |</span>{" "}
+                    <span className="session_ape">
+                      Bienvenido {ape_alu}{" "}
+                      <span className="session_img">
+                        <img src={imagen_alu} alt="Alumno imagen" />
+                      </span> |
+                    </span>{" "}
                     <button
                       onClick={() => {
                         cerrarSesion();
@@ -181,7 +187,7 @@ const Nav = ({ history }) => {
                   </ul>
                 </li>
                 <li>
-                  {autenticado ? ( 
+                  {autenticado ? (
                     <Link to="/Alumno_sesion">
                       <a>Alumno</a>
                     </Link>

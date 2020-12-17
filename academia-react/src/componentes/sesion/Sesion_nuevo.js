@@ -22,7 +22,7 @@ const Sesion_nuevo = () => {
       </header>
       <min>
         <main>
-          <section class="seccion">
+          <section class="seccion bg2">
             <div class="inisesion contenedor">
               <div class="formulario__cabecera">
                 <h4>Regístrate</h4>

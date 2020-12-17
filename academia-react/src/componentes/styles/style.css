@@ -228,6 +228,19 @@ button:hover {
 .session_ape {
   color: #ffffff;
 }
+.session_img {
+  position: absolute;
+  top: 7px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.session_img img {
+  background-color: var(--color-pri-70);
+  width: 25px;
+  overflow: hidden;
+}
 .ses__usuario {
   display: flex;
   flex-direction: row;
@@ -1042,6 +1055,13 @@ textarea:hover {
   width: 350px !important;
   border: 1px solid var(--color-gris);
   padding: 20px;
+  background-color: #ffffff;
+}
+.bg {
+  background: url("../img/main/fondo.png") no-repeat left/50%;
+}
+.bg2 {
+  background: url("../img/main/fondo2.png") no-repeat left/50%;
 }
 .frm__input {
   display: flex;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faUserTie, faLock } from "@fortawesome/free-solid-svg-icons";
 import imgs from "../imgs";
 import { getAlumno, postLogin } from "../../services/authService";
 import AuthState from "../../context/auth/authState";
@@ -51,7 +51,7 @@ const Alumno = ({ history }) => {
         MySwal.fire({
           title: (
             <p>
-              ¡Codigo o contraseña incorrecto!
+              ¡Código o contraseña incorrecto!
               <br />
               verifique
             </p>
@@ -74,7 +74,7 @@ const Alumno = ({ history }) => {
         </div>
       </header>
       <main>
-        <section className="seccion">
+        <section className="seccion bg">
           <div className="inisesion contenedor">
             <div className="formulario__cabecera">
               <h4>Sesión de Alumno</h4>
@@ -82,14 +82,14 @@ const Alumno = ({ history }) => {
             <form onSubmit={handleSubmit} target="_self">
               <div className="frm__input">
                 <i>
-                  <FontAwesomeIcon icon={faEnvelope} />
+                  <FontAwesomeIcon icon={faUserTie} />
                 </i>{" "}
                 <input
                   type="text"
                   name="codalum"
                   value={formulario.codalum}
                   onChange={handleChange}
-                  placeholder="Codigo de alumno*"
+                  placeholder="Código de alumno*"
                 />
               </div>
               <div className="frm__input">
@@ -113,7 +113,7 @@ const Alumno = ({ history }) => {
                 Iniciar Sesión
               </button>
               <a href="">
-                <p className="frm__link">Recordar Matrícula</p>
+                <p className="frm__link">Recordar Código</p>
               </a>
               <a href="">
                 <p className="frm__link">¿Olvidó su contraseña? Ingrese aquí</p>

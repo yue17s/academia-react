@@ -60,7 +60,7 @@ const Sesion = ({ history }) => {
         </div>
       </header>
       <main>
-        <section class="seccion">
+        <section class="seccion bg2">
           <div class="inisesion contenedor">
             <div class="formulario__cabecera">
               <h4>Iniciar Sesión</h4>
