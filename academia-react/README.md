@@ -16,4 +16,6 @@
 - pip install stripe
 ## PARA ENVIAR EMAIL AL CORREO
 - https://dashboard.emailjs.com/sign-in
+## JAZMIN para DJANGO
+- https://django-jazzmin.readthedocs.io/configuration/
 

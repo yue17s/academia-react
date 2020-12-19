@@ -57,7 +57,7 @@ const LibreriaCarrito = ({ history }) => {
               </tr>
             </thead>
             <tbody>
-              {carrito.map((objLibroCarrito) => (
+              {carrito.map((objLibroCarrito, id) => (
                 <tr key={objLibroCarrito.id_libre}>
                   <td className="libre__carri__img">
                     <img src={objLibroCarrito.imagen_libre} alt="" />
@@ -68,7 +68,6 @@ const LibreriaCarrito = ({ history }) => {
                     <small>
                       <b>S/ {objLibroCarrito.precio_libre}</b>
                     </small>
-                    <small> - Suto: {objLibroCarrito.suto}</small>
                   </td>
                   <td className="libre__carri__deta">{objLibroCarrito.cant}</td>
                 </tr>
