@@ -12,6 +12,7 @@ router.register('users', UserViewSet)  # LOGIN
 router.register('full_alumno', views.AlumnoFullViewset)
 router.register('full_materia', views.MateriaFullViewset)
 router.register('full_libreria', views.LibreriaFullViewset)
+router.register('full_biblioteca', views.BibliotecaFullViewset)
 ####################################################################
 
 
@@ -46,6 +47,7 @@ urlpatterns = [
     path('List_All_Usuarios/', views.UsuariosAllViewset.as_view()),  # GET --> http://127.0.0.1:8000/List_All_Usuarios/
     path('Create_User/', views.RegisterUser.as_view()),  # POST --> http://127.0.0.1:8000/Create_User/
     path('Login/', views.LoginView.as_view()),  # POST --> http://127.0.0.1:8000/Login/
+    #**********************************************************************************#
     #**********************************************************************************#
     path('List_Libre_Recomendados/', views.LibrePediRecomendadosDetaViewSet.as_view()),
     path('List_LibrePedi_LibrePediDeta/', views.LibrePediLibrePediDetaViewSet.as_view()),  # POST --> http://127.0.0.1:8000/List_LibrePedi_LibrePediDeta/

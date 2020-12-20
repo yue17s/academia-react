@@ -140,17 +140,18 @@ class AlumnosNotas(models.Model):
 
 class Biblioteca(models.Model):
     id_bibli = models.AutoField(primary_key=True)
-    codigo_bibli = models.CharField(max_length=6)
-    materia_id_mate = models.ForeignKey('Materia', models.DO_NOTHING, db_column='materia_id_mate')
-    titulo_bibli = models.CharField(max_length=100)
-    autor_bibli = models.CharField(max_length=100)
-    editorial_bibli = models.CharField(max_length=100)
-    edicion_bibli = models.DecimalField(max_digits=4, decimal_places=0)
-    isbn_bibli = models.CharField(max_length=12)
-    stock_bibli = models.DecimalField(max_digits=3, decimal_places=0)
+    materia_id_mate = models.ForeignKey('Materia', models.DO_NOTHING, db_column='materia_id_mate',
+                                        related_name="bibliotecaMateria")
+    codigo_bibli = models.CharField("Código", max_length=6, help_text="5 caracteres - Ej. MAT001")
+    titulo_bibli = models.CharField("Título", max_length=100)
+    autor_bibli = models.CharField("Autor", max_length=100)
+    editorial_bibli = models.CharField("Editorial", max_length=100)
+    edicion_bibli = models.DecimalField("Edición", max_digits=4, decimal_places=0, help_text="Ej. 2010")
+    isbn_bibli = models.CharField("ISBN", max_length=12, help_text="12 Digitos")
+    stock_bibli = models.DecimalField("Stock", max_digits=3, decimal_places=0)
     barra_bibli = models.DecimalField("Codigo de barras", max_digits=13, decimal_places=0, help_text="12 digitos")
-    disponible_bibli = models.BooleanField(default=True)
-    imagen_bibli = models.CharField(max_length=350)
+    disponible_bibli = models.BooleanField("Disponible?", default=True)
+    imagen_bibli = models.CharField("Foto", default="https://www.comisur.com/pruebas/img/biblioteca/.jpg", max_length=350)
 
     def __str__(self):
         return self.titulo_bibli + " - " + self.codigo_bibli
@@ -289,7 +290,7 @@ class Libreria(models.Model):
     id_libre = models.AutoField(primary_key=True)
     materia_id_mate = models.ForeignKey('Materia', models.DO_NOTHING, db_column='materia_id_mate',
                                         related_name="libreriaMateria")
-    codigo_libre = models.CharField("Codigo", max_length=6)
+    codigo_libre = models.CharField("Codigo", max_length=6, help_text="Ej. MAT001")
     titulo_libre = models.CharField("Titulo", max_length=100)
     autor_libre = models.CharField("Autor", max_length=100)
     editorial_libre = models.CharField("Editorial", max_length=100)

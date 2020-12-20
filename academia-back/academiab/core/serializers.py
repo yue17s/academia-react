@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Alumnos, AlumnosAsistencia, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, \
-    LibreriaPedidoDetalle
+    LibreriaPedidoDetalle, Biblioteca
 from .models import User, Person  # LOGIN
 
 
@@ -43,7 +43,6 @@ class AlumnosLoginSerializer(serializers.ModelSerializer):
 
 ######
 class DetalleAlumnosAsistenciasSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = AlumnosAsistencia
         # fields = '__all__'
@@ -185,6 +184,19 @@ class MateriaLibreriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Materia
         fields = ['id_mate', 'nom_mate', 'libreriaMateria']
+
+
+# ***********************************************************************************#
+# ******************************* BIBLIOTECA ******************************************#
+class BibliotecaSerializer(serializers.ModelSerializer):
+    nom_biblimate = serializers.CharField(source='materia_id_mate.nom_mate')
+
+    class Meta:
+        model = Biblioteca
+        fields = ['id_bibli', 'codigo_bibli', 'nom_biblimate', 'titulo_bibli', 'autor_bibli', 'editorial_bibli',
+                  'edicion_bibli', 'isbn_bibli', 'stock_bibli', 'barra_bibli', 'disponible_bibli',
+                  'imagen_bibli']
+        # fields = '__all__'
 
 
 # ***********************************************************************************#

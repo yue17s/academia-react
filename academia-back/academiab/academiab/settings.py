@@ -190,7 +190,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Bienvenido a la ACADEMIA",
 
     # Copyright on the footer
-    "copyright": "Hecho por Rodrigo y Renato",
+    "copyright": "Hecho por Rodrigo & Renato",
 
     # The model admin to search from the search bar, search bar omitted if excluded
     "search_model": "auth.User",
@@ -224,7 +224,7 @@ JAZZMIN_SETTINGS = {
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"name": "Soporte", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
         {"model": "auth.user"}
     ],
 
@@ -260,8 +260,8 @@ JAZZMIN_SETTINGS = {
     # Custom icons for side menu apps/models See https://fontawesome.com/icons?d=gallery&m=free
     # for a list of icon classes
     "icons": {
-        "auth": "fas fa-users-cog",
-        "auth.user": "fas fa-user",
+        "auth": "fas fa-envelope",
+        "auth.user": "fas fa-envelope",
         "auth.Group": "fas fa-users",
     },
     # Icons that are used when one is not manually specified

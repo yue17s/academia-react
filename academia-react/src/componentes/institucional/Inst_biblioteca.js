@@ -13,6 +13,21 @@ const Inst_biblioteca = () => {
       setMaterias(arregloMaterias.data);
     });
   }, []);
+  const [formulario, setFormulario] = useState({
+    busqueda: "",
+    campeones: [],
+  });
+
+  const handleChange = async (e) => {
+    setFormulario({
+      ...formulario,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+ /* const componentDidMount(){
+    this.setState({campeones: tablaCampeones})
+  }*/
 
   return (
     <>
@@ -40,6 +55,9 @@ const Inst_biblioteca = () => {
               <input
                 type="text"
                 placeholder="Buscar por título | autor | editorial"
+                name="busqueda"
+                value={formulario.busqueda}
+                onChange={handleChange}
               />
               <div className="barra__ico">
                 <i>

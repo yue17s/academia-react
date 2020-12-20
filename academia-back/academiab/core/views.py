@@ -13,12 +13,12 @@ from .serializers import AlumnosSerializer, AlumnosAsistenciaSerializer, Alumnos
     UsuariosSerializer, \
     LibreriaSerializer, \
     LibrePediLibrePediDetaSerializer, LibrePediRecomendadosDetaSerializer, UserSerializer, UsuariosSerializer, \
-    MateriaLibreriaSerializer
+    MateriaLibreriaSerializer, BibliotecaSerializer
 from rest_framework import generics
 from rest_framework import viewsets  # METODOS para Listas
 import json
 from .models import Alumnos, AlumnosAsistencia, AlumnosNotas, Docentes, Materia, Usuarios, Libreria, LibreriaPedido, \
-    LibreriaPedidoDetalle, Checkout
+    LibreriaPedidoDetalle, Biblioteca, Checkout
 from .models import User  # LOGIN
 from rest_framework.authtoken.models import Token
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -338,6 +338,14 @@ class RegistrarCheckout(generics.CreateAPIView):
             data = {'detail': 'Checkout guardado correctamente'}
         reply = json.dumps(data)
         return HttpResponse(reply, content_type='application/json')
+
+
+# ************************************************************#
+# ************************************************************#
+class BibliotecaFullViewset(viewsets.ModelViewSet):
+    queryset = Biblioteca.objects.all()
+    serializer_class = BibliotecaSerializer
+    permission_classes = (AllowAny,)
 
 
 ##################################################################
