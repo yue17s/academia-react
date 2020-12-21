@@ -146,6 +146,7 @@ button:hover {
 }
 .btn-rojo {
   background-color: red;
+  border: #ffffff;
   width: 100%;
 }
 .btn-rojo:hover {
@@ -1773,6 +1774,15 @@ textarea:hover {
 }
 .pasarela__buy {
   margin-top: 20px;
+}
+.pasarela__pago {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.pasarela__btn {
+  margin-left: 25px;
 }
 /********************* 404 ***********************/
 .notfound {

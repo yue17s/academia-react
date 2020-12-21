@@ -74,7 +74,7 @@ const CarritoLibros = ({ history }) => {
               </tr>
               <tr>
                 <td className="carri__txt">Subtotal: S/</td>
-                <td className="carri__deta">5500.00</td>
+                <td className="carri__deta">172.00</td>
               </tr>
             </tbody>
           </table>

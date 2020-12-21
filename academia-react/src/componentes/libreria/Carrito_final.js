@@ -142,6 +142,7 @@ const Carrito_final = ({ history }) => {
                   </table>
                   <div className="final__btn">
                     <button
+                      className="btn-rojo"
                       onClick={() => {
                         goPasarela();
                       }}
