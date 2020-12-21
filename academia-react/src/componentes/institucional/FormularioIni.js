@@ -14,17 +14,15 @@ import withReactContent from "sweetalert2-react-content";
 import imgs from "../imgs";
 import emailjs from "emailjs-com";
 
-const Formulario = () => {
+const Formulario = ({ history }) => {
   const [formulario, setFormulario] = useState({
     nombre: "",
     email: "",
     telefono: "",
     consulta: "",
   });
-
   function sendEmail(e) {
     e.preventDefault();
-
     const MySwal = withReactContent(Swal);
     if (
       formulario.nombre == "" ||
@@ -61,7 +59,12 @@ const Formulario = () => {
                   Consulta con exito!
                 </p>
               ),
+              confirmButtonText: `OK`,
               footer: "Academia 2020",
+            }).then((result) => {
+              if (setFormulario.nombre == 'undefine') {
+                formulario.value = "";
+              }
             });
             console.log("Aqui tendrias que limpiar los TEXTS");
             console.log(result.text);
@@ -204,7 +207,8 @@ const Formulario = () => {
                   onChange={handleChangeF}
                   placeholder="Tu consulta*"
                 ></textarea>
-                <br /><br />
+                <br />
+                <br />
                 <div className="msjrequerido">
                   <small>* Campos Requeridos</small>
                 </div>
