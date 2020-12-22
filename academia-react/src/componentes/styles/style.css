@@ -1653,10 +1653,12 @@ textarea:hover {
 .carri__nom {
   flex: 1;
   padding: 5px 10px;
+  margin: auto;
 }
 .carri__btn {
   width: 100px;
   padding: 5px 10px;
+  margin: auto;
 }
 .carri__btn button {
   padding: 0;
@@ -1705,6 +1707,9 @@ textarea:hover {
 }
 .carrito__left ul > li {
   cursor: auto;
+}
+.final__btn {
+  width: 250px;
 }
 .final__titu {
   padding-left: 15px;

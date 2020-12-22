@@ -6,6 +6,7 @@ import {
   faSchool,
   faCalendarCheck,
   faCashRegister,
+  faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../context/auth/authContext";
 //import { withRouter } from "react-router-dom";
@@ -21,6 +22,7 @@ const Carrito_final = ({ history }) => {
   } = useContext(AuthContext);
 
   const goPasarela = () => history.push("/Pasarela");
+  const goCarrito = () => history.push("/Carrito");
 
   return (
     <>
@@ -151,6 +153,17 @@ const Carrito_final = ({ history }) => {
                         <FontAwesomeIcon icon={faCashRegister} />
                       </i>{" "}
                       Continuar con el pago
+                    </button>
+                    <br /> <br />
+                    <button
+                      onClick={() => {
+                        goCarrito();
+                      }}
+                    >
+                      <i>
+                        <FontAwesomeIcon icon={faShoppingCart} />
+                      </i>{" "}
+                      Volver al carrito
                     </button>
                   </div>
                 </div>

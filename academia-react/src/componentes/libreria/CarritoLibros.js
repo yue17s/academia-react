@@ -70,11 +70,11 @@ const CarritoLibros = ({ history }) => {
             <tbody>
               <tr>
                 <td className="carri__txt">Total items:</td>
-                <td className="carri__deta">3</td>
+                <td className="carri__deta">4</td>
               </tr>
               <tr>
                 <td className="carri__txt">Subtotal: S/</td>
-                <td className="carri__deta">172.00</td>
+                <td className="carri__deta">182.00</td>
               </tr>
             </tbody>
           </table>

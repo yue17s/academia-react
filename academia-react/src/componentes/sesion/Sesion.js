@@ -10,7 +10,9 @@ import { getUsuario } from "../../services/authService";
 
 const Sesion = ({ history }) => {
   const { iniciarSesionState } = useContext(AuthContext);
-
+  const {
+    nom_usu,
+  } = useContext(AuthContext);
   const [formulario, setFormulario] = useState({
     emailusu: "",
     passusu: "",
@@ -28,7 +30,13 @@ const Sesion = ({ history }) => {
     const MySwal = withReactContent(Swal);
     if (formulario.emailusu == "" || formulario.passusu == "") {
       MySwal.fire({
-        title: <p>¡Campo(s) vacios!<br />verifique</p>,
+        title: (
+          <p>
+            ¡Campo(s) vacios!
+            <br />
+            verifique
+          </p>
+        ),
         footer: "Academia 2020",
       });
     }
@@ -38,11 +46,21 @@ const Sesion = ({ history }) => {
       if (!rpta.detail) {
         console.log("EXITO!!!");
         iniciarSesionState(rpta);
-        history.push("/Libreria");
+        MySwal.fire({
+          title: <p>Bienvenido {nom_usu},<br /><small>Puede continuar con su compra</small></p>,
+          footer: "Academia 2020",
+        });
+        history.push("/Carrito");
       } else {
         console.log("USUARIO INCORRECTO");
         MySwal.fire({
-          title: <p>¡Email o contraseña incorrecto!<br />verifique</p>,
+          title: (
+            <p>
+              ¡Email o contraseña incorrecto!
+              <br />
+              verifique
+            </p>
+          ),
           footer: "Academia 2020",
         });
       }

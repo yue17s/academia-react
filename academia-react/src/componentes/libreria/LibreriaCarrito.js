@@ -40,10 +40,10 @@ const LibreriaCarrito = ({ history }) => {
         </div>
         <div className="carrito__final">
           <p>
-            Total items: <b>3</b>{" "}
+            Total items: <b>4</b>{" "}
           </p>
           <p>
-            Subtotal: <b>S/ 172.00</b>{" "}
+            Subtotal: <b>S/ 182.00</b>{" "}
           </p>
         </div>
         <div className="carrito__finaldetalles">
